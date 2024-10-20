@@ -1,0 +1,197 @@
+Untuk mengintegrasikan Jitsi sebagai solusi video call dalam proyek Anda, di mana dokter dan pasien bisa melakukan video call melalui tombol "Start Meeting" atau "Join Meeting," kita bisa menggunakan Jitsi Meet API.
+
+Langkah-Langkah Implementasi:
+Menginstal Jitsi Meet API: Pastikan Anda menambahkan Jitsi Meet API ke proyek Anda melalui script langsung atau dengan npm/yarn.
+
+Dengan npm:
+
+bash
+Copy code
+npm install react-jitsi
+Menggunakan Jitsi dalam Proyek: Setelah menginstal react-jitsi, kita bisa menggunakan komponen ini untuk melakukan video call. Nantinya, dokter akan menekan Start Meeting dan pasien menekan Join Meeting, yang akan membawa mereka ke ruang video call yang sama berdasarkan ID tertentu.
+
+Mengintegrasikan Jitsi di HistoryDiagnosis.js dan KonsultasiDokter.js: Di kedua komponen, kita akan mengubah tombol Join Meeting dan Start Meeting untuk memulai sesi video dengan Jitsi.
+
+////Update HistoryDiagnosis.js (Pasien):
+Ini adalah bagian di mana pasien akan menekan tombol Join Meeting untuk bergabung dengan sesi video call.
+
+import React, { useState } from 'react';
+import { FaVideo, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { JitsiMeeting } from '@jitsi/react-sdk'; // Import Jitsi API
+import Image from 'next/image';
+
+const generateDummyData = (numPatients) => {
+  const names = ['John Doe', 'Emily Kazuhara', 'Michael Johnson', 'Emily Davis', 'James Brown'];
+  const specialties = ['Cardiologist', 'Dermatologist', 'Neurologist', 'Pediatrician', 'Psychiatrist'];
+
+  const dummyPatients = [];
+  for (let i = 0; i < numPatients; i++) {
+    dummyPatients.push({
+      id: i + 1,
+      name: names[i % names.length],
+      specialty: specialties[i % specialties.length],
+      diagId: 1000 + i + 1,
+      status: i % 2 === 0 ? 'Join Meeting' : 'No Meeting Scheduled',
+    });
+  }
+  return dummyPatients;
+};
+
+export default function HistoryDiagnosis() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isVideoOpen, setIsVideoOpen] = useState(false); // State to handle video call
+
+  const dataDump = generateDummyData(12);
+  const itemsPerPage = 5;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = dataDump.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(dataDump.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const openVideoCall = () => {
+    setIsVideoOpen(true); // Open video call modal
+  };
+
+  return (
+    <div className='bg-white p-6 rounded-lg shadow-md'>
+      <h2 className='text-xl font-semibold mb-4 text-black'>History Diagnosis</h2>
+      <div className='overflow-x-auto'>
+        <table className='min-w-full table-auto'>
+          <thead>
+            <tr>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>No.</th>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>Nama Dokter</th>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>ID Diagnosis</th>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>Hasil Diagnosis AI</th>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>Hasil Konsultasi</th>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentItems.map((entry, index) => (
+              <tr key={entry.id} className='border-b'>
+                <td className='px-4 py-6 text-black'>{indexOfFirstItem + index + 1}</td>
+                <td className='px-4 py-6 text-black'>
+                  <div className='flex items-center'>
+                    <Image src='/assets/images/logoDokter.png' alt='avatar' className='w-12 h-12 rounded-full' width={48} height={48} />
+                    <div className='ml-3'>
+                      <p className='text-sm font-medium'>{entry.name}</p>
+                      <p className='text-xs text-gray-500'>{entry.specialty}</p>
+                    </div>
+                  </div>
+                </td>
+                <td className='px-4 py-6 text-black'>{entry.diagId}</td>
+                <td className='px-4 py-6 text-black'>Lorem Ipsum dolor sit..</td>
+                <td className='px-4 py-6 text-black'>Lorem Ipsum dolor sit..</td>
+                <td className='px-4 py-6'>
+                  {entry.status === 'Join Meeting' ? (
+                    <button onClick={openVideoCall} className='bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700'>
+                      <FaVideo className='inline-block mr-2' /> Join Meeting
+                    </button>
+                  ) : (
+                    <span className='text-gray-500 text-sm'>No Meeting Scheduled</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className='flex justify-between items-center mt-4'>
+        {/* Pagination */}
+      </div>
+
+      {/* Video Call Modal */}
+      {isVideoOpen && (
+        <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50'>
+          <div className='bg-white w-[90%] max-w-4xl rounded-lg shadow-lg p-6'>
+            <div className='bg-blue-600 text-white py-4 px-6 rounded-t-lg flex justify-between items-center'>
+              <h2 className='text-xl font-semibold'>Join Meeting</h2>
+              <button onClick={() => setIsVideoOpen(false)}>Close</button>
+            </div>
+
+            <JitsiMeeting
+              roomName="KonsultasiDokterPasienRoom"
+              configOverwrite={{
+                startWithAudioMuted: false,
+                startWithVideoMuted: false,
+              }}
+              onApiReady={(externalApi) => {
+                // Handle API interactions here
+                console.log(externalApi);
+              }}
+              getIFrameRef={(iframeRef) => {
+                iframeRef.style.height = '500px';
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+//// Update KonsultasiDokter.js (Dokter):
+Di sini dokter akan menekan tombol Start Meeting untuk memulai sesi.
+
+import React, { useState } from 'react';
+import NavbarDoc from '../app/components/NavbarDoc';
+import { FaChevronLeft, FaChevronRight, FaBars } from 'react-icons/fa';
+import { JitsiMeeting } from '@jitsi/react-sdk'; // Import Jitsi API
+
+export default function KonsultasiDokter() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  const startMeeting = () => {
+    setIsVideoOpen(true); // Open video call modal
+  };
+
+  return (
+    <div className='flex min-h-screen'>
+      <NavbarDoc />
+      <div className='flex-1 p-6'>
+        <h1 className='text-2xl font-bold mb-4'>Konsultasi Pasien</h1>
+
+        <button onClick={startMeeting} className='bg-blue-500 text-white p-4 rounded-lg'>
+          Start Meeting
+        </button>
+
+        {isVideoOpen && (
+          <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50'>
+            <div className='bg-white w-[90%] max-w-4xl rounded-lg shadow-lg p-6'>
+              <div className='bg-blue-600 text-white py-4 px-6 rounded-t-lg flex justify-between items-center'>
+                <h2 className='text-xl font-semibold'>Start Meeting</h2>
+                <button onClick={() => setIsVideoOpen(false)}>Close</button>
+              </div>
+
+              <JitsiMeeting
+                roomName="KonsultasiDokterPasienRoom"
+                configOverwrite={{
+                  startWithAudioMuted: false,
+                  startWithVideoMuted: false,
+                }}
+                onApiReady={(externalApi) => {
+                  console.log(externalApi);
+                }}
+                getIFrameRef={(iframeRef) => {
+                  iframeRef.style.height = '500px';
+                }}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+//////////////
+
+Penjelasan:
+JitsiMeet: Kita menggunakan JitsiMeet untuk menyediakan video call antara dokter dan pasien.
+Tombol Start/Join Meeting: Pasien dan dokter menggunakan ID room yang sama (KonsultasiDokterPasienRoom) sehingga mereka masuk ke ruang yang sama untuk konsultasi.
+Modal Video Call: Modal video call akan terbuka saat pasien atau dokter menekan tombol Join Meeting atau Start Meeting.
+Coba terapkan perubahan ini dan jalankan proyek Anda untuk melihat apakah video call dapat berfungsi sesuai yang diharapkan!
