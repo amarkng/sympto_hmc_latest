@@ -1,5 +1,7 @@
 import React from 'react';
-import { FaUserMd, FaStethoscope, FaClipboardList } from 'react-icons/fa';
+import { FaUserMd } from 'react-icons/fa';
+import { BsFillClipboard2PulseFill } from 'react-icons/bs';
+import { TbStethoscope } from 'react-icons/tb';
 
 export default function UpperBoxPatient() {
   return (
@@ -14,7 +16,7 @@ export default function UpperBoxPatient() {
       </div>
 
       <div className='bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl shadow-lg flex items-center'>
-        <FaStethoscope className='text-5xl ml-4' />
+        <TbStethoscope className='text-5xl ml-4' />
         <div style={{ marginLeft: '34px' }}>
           <h3 className='text-xl font-semibold'>Total Diagnosis</h3>
           <p className='text-4xl font-extrabold'>2</p>
@@ -23,7 +25,7 @@ export default function UpperBoxPatient() {
       </div>
 
       <div className='bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl shadow-lg flex items-center'>
-        <FaClipboardList className='text-5xl ml-4' />
+        <BsFillClipboard2PulseFill className='text-5xl ml-4 transform scale-x-[-1]' />
         <div style={{ marginLeft: '34px' }}>
           <h3 className='text-xl font-semibold'>Menunggu Verifikasi</h3>
           <p className='text-4xl font-extrabold'>3</p>

@@ -22,6 +22,11 @@ export default function VerifikasiDiagnosis() {
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleSubmit = () => {
+    alert('Data berhasil disimpan!');
+    setIsModalOpen(false);
+  };
+
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -411,7 +416,10 @@ export default function VerifikasiDiagnosis() {
                   </div>
                 )}
                 <div className='flex justify-center mt-6'>
-                  <button className='bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-700 text-base'>
+                  <button
+                    onClick={handleSubmit}
+                    className='bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-700 text-base'
+                  >
                     Submit
                   </button>
                 </div>

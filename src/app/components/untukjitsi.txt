@@ -134,7 +134,7 @@ export default function HistoryDiagnosis() {
   );
 }
 
-//// Update KonsultasiDokter.js (Dokter):
+///// Update KonsultasiDokter.js (Dokter):
 Di sini dokter akan menekan tombol Start Meeting untuk memulai sesi.
 
 import React, { useState } from 'react';

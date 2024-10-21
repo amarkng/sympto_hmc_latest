@@ -107,16 +107,16 @@ export default function HistoryDiagnosisP() {
         <table className='min-w-full table-auto'>
           <thead>
             <tr>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                 No.
               </th>
               <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
                 Nama Pasien
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                 ID Diagnosis
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                 Tanggal
               </th>
               <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
@@ -125,7 +125,7 @@ export default function HistoryDiagnosisP() {
               <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
                 Diagnosis Dokter
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-sm font-semibold text-black text-center'>
                 Status
               </th>
             </tr>
@@ -133,25 +133,29 @@ export default function HistoryDiagnosisP() {
           <tbody>
             {currentItems.map((item, index) => (
               <tr key={item.id} className='border-b'>
-                <td className='px-4 py-4 text-black'>
+                <td className='px-4 py-4 text-black text-center'>
                   {indexOfFirstItem + index + 1}
                 </td>
                 <td className='px-4 py-4 text-black'>{item.patientName}</td>
-                <td className='px-4 py-4 text-black'>{item.diagId}</td>
-                <td className='px-4 py-4 text-black'>{item.date}</td>
+                <td className='px-4 py-4 text-black text-center'>
+                  {item.diagId}
+                </td>
+                <td className='px-4 py-4 text-black text-center'>
+                  {item.date}
+                </td>
                 <td className='px-4 py-4 text-black'>{item.result}</td>
                 <td className='px-4 py-4 text-black'>{item.doctorDiagnosis}</td>
-                <td className='px-4 py-4'>
+                <td className='px-4 py-4 text-center'>
                   {item.status === 'Verified' ? (
-                    <span className='bg-green-600 text-white px-4 py-2 rounded-lg'>
+                    <span className='bg-green-600 text-white px-2 py-1 rounded-lg text-sm'>
                       Verifikasi
                     </span>
                   ) : item.status === 'Ditolak' ? (
-                    <span className='bg-red-600 text-white px-4 py-2 rounded-lg'>
+                    <span className='bg-red-600 text-white px-2 py-1 rounded-lg text-sm'>
                       Ditolak
                     </span>
                   ) : (
-                    <span className=' bg-white text-black px-4 py-2 rounded-lg shadow-md'>
+                    <span className=' bg-white text-black px-2 py-1 rounded-lg shadow-md text-sm'>
                       Menunggu
                     </span>
                   )}

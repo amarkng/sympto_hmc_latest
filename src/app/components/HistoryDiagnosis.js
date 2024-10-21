@@ -107,13 +107,13 @@ export default function HistoryDiagnosis() {
         <table className='min-w-full table-auto'>
           <thead>
             <tr>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                 No.
               </th>
               <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
                 Nama Dokter
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                 ID Diagnosis
               </th>
               <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
@@ -122,7 +122,7 @@ export default function HistoryDiagnosis() {
               <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
                 Hasil Konsultasi
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                 Status
               </th>
             </tr>
@@ -130,7 +130,7 @@ export default function HistoryDiagnosis() {
           <tbody>
             {currentItems.map((entry, index) => (
               <tr key={entry.id} className='border-b'>
-                <td className='px-4 py-6 text-black'>
+                <td className='px-4 py-6 text-black text-center'>
                   {indexOfFirstItem + index + 1}
                 </td>
                 <td className='px-4 py-6 text-black'>
@@ -148,18 +148,20 @@ export default function HistoryDiagnosis() {
                     </div>
                   </div>
                 </td>
-                <td className='px-4 py-6 text-black'>{entry.diagId}</td>
-                <td className='px-4 py-6 text-black'>
-                  Lorem Ipsum dolor sit..
+                <td className='px-4 py-6 text-black text-center'>
+                  {entry.diagId}
                 </td>
                 <td className='px-4 py-6 text-black'>
                   Lorem Ipsum dolor sit..
                 </td>
-                <td className='px-4 py-6'>
+                <td className='px-4 py-6 text-black'>
+                  Lorem Ipsum dolor sit..
+                </td>
+                <td className='px-4 py-6 text-center'>
                   {entry.status === 'Join Meeting' ? (
                     <button
                       onClick={openVideoCall}
-                      className='bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700'
+                      className='bg-blue-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700'
                     >
                       <FaVideo className='inline-block mr-2' /> Join Meeting
                     </button>

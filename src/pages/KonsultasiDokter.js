@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavbarDoc from '../app/components/NavbarDoc';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaBars } from 'react-icons/fa';
 import Image from 'next/image';
 
 const generateDummyData = (numPatients) => {
@@ -29,6 +29,12 @@ const generateDummyData = (numPatients) => {
 export default function KonsultasiDokter() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const dataDump = generateDummyData(12);
   const itemsPerPage = 5;
@@ -97,11 +103,24 @@ export default function KonsultasiDokter() {
   }, [isVideoOpen]);
 
   return (
-    <div className='flex min-h-screen bg-gray-100'>
-      <NavbarDoc />
+    <div className='flex min-h-screen'>
+      <NavbarDoc toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
 
-      <div className='flex-1 p-6'>
-        <h1 className='text-3xl font-bold mb-6 text-black'>Konsultasi</h1>
+      <div
+        className={`flex-1 p-6 bg-gray-50 transition-all duration-300 ${
+          isSidebarOpen ? 'ml-64' : 'ml-0'
+        } overflow-y-auto`}
+      >
+        <div className='md:hidden flex justify-between items-center mb-6'>
+          <h1 className='text-2xl font-bold text-blue-600'>Konsultasi</h1>
+          <button onClick={toggleSidebar}>
+            <FaBars className='text-2xl text-gray-700' />
+          </button>
+        </div>
+
+        <div className='hidden sm:block'>
+          <h1 className='text-3xl font-bold mb-6 text-black'>Konsultasi</h1>
+        </div>
 
         <div className='bg-white p-6 rounded-lg shadow-lg'>
           <h2 className='text-xl font-semibold mb-4 text-black'>
@@ -112,13 +131,13 @@ export default function KonsultasiDokter() {
             <table className='min-w-full table-auto'>
               <thead>
                 <tr>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                     No.
                   </th>
                   <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
                     Nama Pasien
                   </th>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                     ID Diagnosis
                   </th>
                   <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
@@ -127,7 +146,7 @@ export default function KonsultasiDokter() {
                   <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
                     Diagnosis Dokter
                   </th>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
                     Status
                   </th>
                 </tr>
@@ -135,13 +154,13 @@ export default function KonsultasiDokter() {
               <tbody>
                 {currentItems.map((entry, index) => (
                   <tr key={entry.id} className='border-b'>
-                    <td className='px-4 py-6 text-black'>
+                    <td className='px-4 py-6 text-black text-center'>
                       {indexOfFirstItem + index + 1}
                     </td>
                     <td className='px-4 py-6 text-black'>
                       <div className='flex items-center'>
                         <Image
-                          src='/assets/images/logoDokter.png'
+                          src='/assets/images/logoPasien.png'
                           alt='avatar'
                           className='w-12 h-12 rounded-full'
                           width={48}
@@ -152,12 +171,14 @@ export default function KonsultasiDokter() {
                         </div>
                       </div>
                     </td>
-                    <td className='px-4 py-6 text-black'>{entry.diagId}</td>
+                    <td className='px-4 py-6 text-black text-center'>
+                      {entry.diagId}
+                    </td>
                     <td className='px-4 py-6 text-black'>{entry.aiResult}</td>
                     <td className='px-4 py-6 text-black'>
                       {entry.doctorResult}
                     </td>
-                    <td className='px-4 py-6'>
+                    <td className='px-4 py-6 text-center'>
                       {entry.status === 'Start Meeting' ? (
                         <button
                           onClick={openVideoCall}
