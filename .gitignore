@@ -39,4 +39,4 @@ next-env.d.ts
 .vscode/
 .idea/
 
-.untukjitsi.txt
+src/app/components/untukjitsi.txt
