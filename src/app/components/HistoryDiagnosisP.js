@@ -166,39 +166,56 @@ export default function HistoryDiagnosisP() {
         </table>
       </div>
 
-      {/* Pagination */}
       <div className='flex justify-between items-center mt-4'>
         <button
           onClick={goToPreviousPage}
           disabled={currentPage === 1}
-          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center ${
+          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
             currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''
           }`}
         >
           <FaChevronLeft className='mr-2' /> Previous
         </button>
 
-        <ul className='flex space-x-1'>
-          {[...Array(totalPages)].map((_, index) => (
-            <li key={index}>
-              <button
-                onClick={() => paginate(index + 1)}
-                className={`py-1 px-3 rounded-md border text-sm ${
-                  currentPage === index + 1
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-white text-gray-700'
-                } hover:bg-blue-500 hover:text-white`}
-              >
-                {index + 1}
-              </button>
-            </li>
-          ))}
+        <ul className='flex space-x-1 sm:space-x-2 overflow-x-auto'>
+          {[...Array(totalPages)].map((_, index) => {
+            if (
+              index + 1 === currentPage ||
+              (index + 1 >= currentPage - 1 && index + 1 <= currentPage + 1)
+            ) {
+              return (
+                <li key={index}>
+                  <button
+                    onClick={() => paginate(index + 1)}
+                    className={`py-1 px-2 sm:px-3 rounded-md border text-xs sm:text-sm ${
+                      currentPage === index + 1
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-white text-gray-700'
+                    } hover:bg-blue-500 hover:text-white transition`}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              );
+            }
+            if (
+              index + 1 === currentPage - 2 ||
+              index + 1 === currentPage + 2
+            ) {
+              return (
+                <li key={index} className='text-xs sm:text-sm'>
+                  ...
+                </li>
+              );
+            }
+            return null;
+          })}
         </ul>
 
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center ${
+          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
           }`}
         >

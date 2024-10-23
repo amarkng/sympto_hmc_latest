@@ -64,8 +64,7 @@ export default function SignIn() {
                   Password
                 </label>
 
-                {/* Link "Lupa?" diletakkan di sini */}
-                <Link href='#forgot-password' className='text-blue-600 text-sm'>
+                <Link href='/forgot-password' className='text-blue-600 text-sm'>
                   Lupa?
                 </Link>
               </div>

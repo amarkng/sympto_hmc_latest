@@ -182,7 +182,7 @@ export default function HistoryDiagnosis() {
         <button
           onClick={goToPreviousPage}
           disabled={currentPage === 1}
-          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm ${
+          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
             currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''
           }`}
         >
@@ -199,7 +199,7 @@ export default function HistoryDiagnosis() {
                 <li key={index}>
                   <button
                     onClick={() => paginate(index + 1)}
-                    className={`py-1 px-3 rounded-md border text-xs sm:text-sm ${
+                    className={`py-1 px-2 sm:px-3 rounded-md border text-xs sm:text-sm ${
                       currentPage === index + 1
                         ? 'bg-blue-500 text-white'
                         : 'bg-white text-gray-700'
@@ -227,7 +227,7 @@ export default function HistoryDiagnosis() {
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm ${
+          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
           }`}
         >

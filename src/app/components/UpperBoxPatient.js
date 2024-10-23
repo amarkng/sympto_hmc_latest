@@ -6,7 +6,15 @@ import { TbStethoscope } from 'react-icons/tb';
 export default function UpperBoxPatient() {
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-6'>
-      <div className='bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl shadow-lg flex items-center'>
+      <div
+        className='bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl shadow-lg flex items-center'
+        style={{
+          backgroundImage: 'url("/assets/images/box1.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
         <FaUserMd className='text-5xl ml-4' />
         <div style={{ marginLeft: '34px' }}>
           <h3 className='text-xl font-semibold'>Total Konsultasi</h3>
@@ -15,7 +23,15 @@ export default function UpperBoxPatient() {
         </div>
       </div>
 
-      <div className='bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl shadow-lg flex items-center'>
+      <div
+        className='bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl shadow-lg flex items-center'
+        style={{
+          backgroundImage: 'url("/assets/images/box1.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
         <TbStethoscope className='text-5xl ml-4' />
         <div style={{ marginLeft: '34px' }}>
           <h3 className='text-xl font-semibold'>Total Diagnosis</h3>
@@ -24,7 +40,15 @@ export default function UpperBoxPatient() {
         </div>
       </div>
 
-      <div className='bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl shadow-lg flex items-center'>
+      <div
+        className='bg-gradient-to-r from-blue-500 to-blue-700 text-white p-8 rounded-xl shadow-lg flex items-center'
+        style={{
+          backgroundImage: 'url("/assets/images/box1.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
         <BsFillClipboard2PulseFill className='text-5xl ml-4 transform scale-x-[-1]' />
         <div style={{ marginLeft: '34px' }}>
           <h3 className='text-xl font-semibold'>Menunggu Verifikasi</h3>

@@ -1,106 +1,120 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NavbarDoc from '../app/components/NavbarDoc';
 import { FaChevronLeft, FaChevronRight, FaBars } from 'react-icons/fa';
-import Image from 'next/image';
 
-const generateDummyData = (numPatients) => {
-  const names = [
-    'Olivia Rhye',
-    'Phoenix Baker',
-    'Lana Steiner',
-    'Demi Wilkinson',
-    'Candice Wu',
-  ];
+const dummyData = [
+  {
+    id: 1,
+    nama: 'Olivia Rhye',
+    idDiagnosis: '22',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 2,
+    nama: 'Phoenix Baker',
+    idDiagnosis: '23',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 3,
+    nama: 'Lana Steiner',
+    idDiagnosis: '24',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 4,
+    nama: 'Demi Wilkinson',
+    idDiagnosis: '25',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 5,
+    nama: 'Candice Wu',
+    idDiagnosis: '26',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 6,
+    nama: 'Candice Wu',
+    idDiagnosis: '27',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 7,
+    nama: 'Candice Wu',
+    idDiagnosis: '28',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 8,
+    nama: 'Candice Wu',
+    idDiagnosis: '29',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 9,
+    nama: 'Candice Wu',
+    idDiagnosis: '29',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 10,
+    nama: 'Candice Wu',
+    idDiagnosis: '29',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 11,
+    nama: 'Candice Wu',
+    idDiagnosis: '29',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+  {
+    id: 12,
+    nama: 'Candice Wu',
+    idDiagnosis: '29',
+    hasilAI: 'Lorem Ipsum dolor sit..',
+    diagnosisDokter: 'Lorem Ipsum dolor sit..',
+  },
+];
 
-  const dummyPatients = [];
-  for (let i = 0; i < numPatients; i++) {
-    dummyPatients.push({
-      id: i + 1,
-      name: names[i % names.length],
-      diagId: 1000 + i + 1,
-      aiResult: 'Lorem Ipsum dolor sit..',
-      doctorResult: 'Lorem Ipsum dolor sit..',
-      status: i % 2 === 0 ? 'Start Meeting' : 'Completed',
-    });
-  }
-  return dummyPatients;
-};
-
-export default function KonsultasiDokter() {
+export default function RiwayatDokter() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
-
+  const itemsPerPage = 5;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const dataDump = generateDummyData(12);
-  const itemsPerPage = 5;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = dataDump.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(dataDump.length / itemsPerPage);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const openVideoCall = () => {
-    setIsVideoOpen(true);
-  };
-
   const goToPreviousPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
   };
 
   const goToNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
   };
 
-  useEffect(() => {
-    const loadJitsiScript = () => {
-      const script = document.createElement('script');
-      script.src = 'https://meet.jit.si/external_api.js';
-      script.async = true;
-      script.onload = () => {
-        console.log('Jitsi script loaded');
-      };
-      document.body.appendChild(script);
-    };
-    loadJitsiScript();
-  }, []);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-  useEffect(() => {
-    if (isVideoOpen) {
-      if (window.JitsiMeetExternalAPI) {
-        console.log('JitsiMeetExternalAPI is available');
-        const domain = 'meet.jit.si';
-        const options = {
-          roomName: 'KonsultasiDokterPasienRoom',
-          width: '100%',
-          height: 500,
-          parentNode: document.getElementById('jitsi-container'),
-          configOverwrite: {
-            startWithAudioMuted: true,
-            startWithVideoMuted: true,
-          },
-        };
-        const api = new window.JitsiMeetExternalAPI(domain, options);
+  const currentItems = dummyData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
-        api.addEventListener('videoConferenceJoined', () => {
-          console.log('Video conference joined');
-        });
-
-        api.addEventListener('error', (error) => {
-          console.error('Jitsi error:', error);
-        });
-
-        return () => api.dispose();
-      } else {
-        console.error('JitsiMeetExternalAPI not available');
-      }
-    }
-  }, [isVideoOpen]);
+  const totalPages = Math.ceil(dummyData.length / itemsPerPage);
 
   return (
     <div className='flex min-h-screen'>
@@ -112,19 +126,19 @@ export default function KonsultasiDokter() {
         } overflow-y-auto`}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
-          <h1 className='text-2xl font-bold text-blue-600'>Konsultasi</h1>
+          <h1 className='text-2xl font-bold text-blue-600'>Riwayat</h1>
           <button onClick={toggleSidebar}>
             <FaBars className='text-2xl text-gray-700' />
           </button>
         </div>
 
-        <div className='hidden sm:block'>
-          <h1 className='text-3xl font-bold mb-6 text-black'>Konsultasi</h1>
+        <div className='hidden md:block'>
+          <h1 className='text-3xl font-bold mb-6 text-black'>Riwayat</h1>
         </div>
 
         <div className='bg-white p-6 rounded-lg shadow-lg'>
           <h2 className='text-xl font-semibold mb-4 text-black'>
-            Daftar Konsultasi Pasien
+            Daftar Riwayat
           </h2>
 
           <div className='overflow-x-auto'>
@@ -146,49 +160,23 @@ export default function KonsultasiDokter() {
                   <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
                     Diagnosis Dokter
                   </th>
-                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
-                    Status
-                  </th>
                 </tr>
               </thead>
               <tbody>
-                {currentItems.map((entry, index) => (
-                  <tr key={entry.id} className='border-b'>
+                {currentItems.map((item, index) => (
+                  <tr key={item.id} className='border-b'>
                     <td className='px-4 py-6 text-black text-center'>
-                      {indexOfFirstItem + index + 1}
+                      {index + 1 + (currentPage - 1) * itemsPerPage}
                     </td>
                     <td className='px-4 py-6 text-black'>
-                      <div className='flex items-center'>
-                        <Image
-                          src='/assets/images/logoPasien.png'
-                          alt='avatar'
-                          className='w-12 h-12 rounded-full'
-                          width={48}
-                          height={48}
-                        />
-                        <div className='ml-3'>
-                          <p className='text-sm font-medium'>{entry.name}</p>
-                        </div>
-                      </div>
+                      <p className='text-sm font-medium'>{item.nama}</p>
                     </td>
                     <td className='px-4 py-6 text-black text-center'>
-                      {entry.diagId}
+                      {item.idDiagnosis}
                     </td>
-                    <td className='px-4 py-6 text-black'>{entry.aiResult}</td>
+                    <td className='px-4 py-6 text-black'>{item.hasilAI}</td>
                     <td className='px-4 py-6 text-black'>
-                      {entry.doctorResult}
-                    </td>
-                    <td className='px-4 py-6 text-center'>
-                      {entry.status === 'Start Meeting' ? (
-                        <button
-                          onClick={openVideoCall}
-                          className='bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700'
-                        >
-                          Start Meeting
-                        </button>
-                      ) : (
-                        <span className='text-gray-500 text-sm'>Completed</span>
-                      )}
+                      {item.diagnosisDokter}
                     </td>
                   </tr>
                 ))}

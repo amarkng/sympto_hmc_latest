@@ -14,7 +14,7 @@ const generateRandomName = () => {
 
 const generateDummyData = () => {
   const dummyPatients = [];
-  for (let i = 1; i <= 21; i++) {
+  for (let i = 1; i <= 19; i++) {
     dummyPatients.push({ name: generateRandomName(), role: 'Pasien' });
   }
   return dummyPatients;
@@ -22,7 +22,7 @@ const generateDummyData = () => {
 
 export default function QueueMeetBox() {
   const [patients, setPatients] = useState([]);
-  const itemsPerPage = 10;
+  const itemsPerPage = 7;
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -50,20 +50,35 @@ export default function QueueMeetBox() {
     }
   };
 
-  return (
-    <div className='bg-white p-6 rounded-lg shadow-lg flex flex-col h-full justify-between'>
-      <h2 className='text-xl font-bold text-gray-800'>Antrian Meet</h2>
+  const getImageByIndex = (index) => {
+    if (index % 3 === 0) {
+      return '/assets/images/cewe1.png';
+    } else if (index % 3 === 1) {
+      return '/assets/images/cowo2.png';
+    } else {
+      return '/assets/images/cowo3.png';
+    }
+  };
 
-      <div className='flex-grow'>
-        <ul className='mt-4 space-y-6 min-h-[320px]'>
+  return (
+    <div className='bg-white p-0 rounded-lg shadow-lg flex-grow flex flex-col h-full'>
+      <h2
+        className='bg-blue-600 text-white text-xl font-bold text-center lg:py-6 py-3 rounded-t-lg'
+        style={{ borderRadius: '12px 12px 0 0' }}
+      >
+        Antrian Meet
+      </h2>
+
+      <div className='flex-grow bg-white px-4 pb-6'>
+        <ul className='divide-y divide-gray-300'>
           {currentPatients.map((patient, index) => (
-            <li key={index} className='flex items-center space-x-4'>
+            <li key={index} className='flex items-center space-x-4 py-4'>
               <Image
-                src='/assets/images/placeholder4.jpg'
+                src={getImageByIndex(index)}
                 alt={patient.name}
-                className='w-10 h-10 rounded-full'
-                width={40}
-                height={40}
+                className='w-14 h-14 rounded-full'
+                width={48}
+                height={48}
               />
               <div>
                 <h3 className='text-gray-900 font-semibold'>{patient.name}</h3>
@@ -73,24 +88,27 @@ export default function QueueMeetBox() {
           ))}
         </ul>
       </div>
-
-      <div className='mt-6 flex justify-between items-center'>
+      {/* Pagination */}
+      <div className='mb-12 px-4 flex justify-between items-center'>
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className={`w-24 px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-lg ${
+          className={`py-1 px-3 text-sm font-semibold text-white bg-blue-500 rounded-lg ${
             currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >
           Previous
         </button>
+
         <span className='text-sm font-semibold text-gray-700'>
-          Page {currentPage} of {totalPages}
+          Page
+          <br /> {currentPage} of {totalPages}
         </span>
+
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
-          className={`w-24 px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded-lg ${
+          className={`py-1 px-3 text-sm font-semibold text-white bg-blue-500 rounded-lg ${
             currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >

@@ -22,7 +22,7 @@ export default function DoctorDashboard() {
       <NavbarDoc toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
 
       <div
-        className={`flex-1 p-6 bg-gray-50 transition-all duration-300 ${
+        className={`flex-1 p-6 bg-gray-50 transition-all duration-300 overflow-auto ${
           isSidebarOpen ? 'ml-64' : 'ml-0'
         }`}
       >
@@ -33,15 +33,15 @@ export default function DoctorDashboard() {
           </button>
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
-          <div className='lg:col-span-2 space-y-6 '>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 h-full'>
+          <div className='lg:col-span-8 space-y-4 h-full flex flex-col'>
             <UpperBoxDoctor />
-            <div className='bg-white p-1 rounded-lg shadow-lg'>
+            <div className='bg-white p-1 rounded-lg shadow-lg flex-grow h-full'>
               <CircularChart />
             </div>
           </div>
 
-          <div className='space-y-6 '>
+          <div className='lg:col-span-4 space-y-4 h-full flex flex-col'>
             <QueueMeetBox />
           </div>
         </div>

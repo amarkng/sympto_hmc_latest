@@ -1,12 +1,13 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { FaFileAlt, FaBell } from 'react-icons/fa';
+import { FaBell } from 'react-icons/fa';
 import { LuClipboardCheck } from 'react-icons/lu';
 import { PiChatsLight } from 'react-icons/pi';
-import { HiOutlineCog6Tooth } from 'react-icons/hi2';
+import { HiOutlineCog6Tooth, HiOutlineDocumentArrowUp } from 'react-icons/hi2';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { RxDashboard } from 'react-icons/rx';
+import { RiReceiptLine } from 'react-icons/ri';
 
 export default function NavbarDoc({ toggleSidebar, isSidebarOpen }) {
   const router = useRouter();
@@ -76,10 +77,16 @@ export default function NavbarDoc({ toggleSidebar, isSidebarOpen }) {
           isActive={isActive('/KonsultasiDokter')}
         />
         <MenuLink
-          Icon={FaFileAlt}
-          label='History'
-          href='#History'
-          isActive={isActive('/History')}
+          Icon={RiReceiptLine}
+          label='Riwayat'
+          href='/RiwayatDokter'
+          isActive={isActive('/RiwayatDokter')}
+        />
+        <MenuLink
+          Icon={HiOutlineDocumentArrowUp}
+          label='Unggah Artikel'
+          href='#UnggahArtikel'
+          isActive={isActive('/UnggahArtikel')}
         />
       </nav>
 

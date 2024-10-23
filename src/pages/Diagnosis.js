@@ -45,11 +45,11 @@ export default function Diagnosis() {
 
       <section className='flex-grow flex items-center justify-center bg-white'>
         <div className='max-w-3xl w-full px-4 lg:px-0'>
-          <h1 className='text-3xl sm:text-4xl font-bold text-black text-center mb-6 mt-2'>
+          <h1 className='text-2xl lg:text-4xl font-bold text-black text-center mb-6 mt-2'>
             Periksa Kesehatanmu dengan Prediksi AI Akurat!
           </h1>
 
-          <div className='bg-gray-50 p-8 rounded-lg'>
+          <div className='bg-gray-50 p-8 max-w-auto rounded-lg'>
             <h2 className='text-lg font-semibold text-gray-700 text-center mb-6'>
               Pilih gejala untuk mendapatkan prediksi AI
             </h2>
@@ -59,14 +59,14 @@ export default function Diagnosis() {
                 <div
                   key={index}
                   onDoubleClick={() => handleDeleteSymptom(symptom)}
-                  className='symptom-button px-6 py-3 rounded-full text-center border border-blue-400 text-black hover:bg-blue-50 transition min-w-[140px] flex items-center justify-center'
+                  className='symptom-button px-6 py-3 rounded-xl text-center border border-blue-400 text-black hover:bg-blue-50 transition min-w-[140px] flex items-center justify-center'
                 >
                   {symptom}
                 </div>
               ))}
 
               <div
-                className='symptom-button border-dashed border-2 border-blue-500 bg-blue-100 text-blue-900 px-8 py-3 rounded-full cursor-pointer hover:bg-blue-200 transition min-w-[140px] flex items-center justify-center gap-2'
+                className='symptom-button border-dashed border-2 border-blue-500 bg-blue-300 text-white text-bold px-8 py-3 rounded-xl cursor-pointer hover:bg-blue-200 transition min-w-[140px] flex items-center justify-center gap-2'
                 onClick={() => setIsAddSymptomModalOpen(true)}
               >
                 <TbPlus className='text-lg' />
@@ -76,7 +76,7 @@ export default function Diagnosis() {
 
             <div className='flex justify-center'>
               <button
-                className='bg-blue-950 text-white px-8 py-3 rounded-full hover:bg-blue-1000 transition flex items-center justify-center gap-2'
+                className='bg-blue-950 text-white px-8 py-3 mt-4 rounded-full hover:bg-blue-1000 transition flex items-center justify-center gap-2'
                 onClick={() => setIsResultModalOpen(true)}
               >
                 <TbEye className='text-xl' />

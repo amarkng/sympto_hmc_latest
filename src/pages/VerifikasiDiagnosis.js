@@ -202,27 +202,27 @@ export default function VerifikasiDiagnosis() {
         </div>
 
         <div className='bg-white p-4 md:p-7 rounded-lg shadow-lg w-full max-w-6x2 mx-auto mb-6'>
-          <h2 className='text-lg font-bold text-black mb-4 ml-7'>
+          <h2 className='text-xl font-semibold mb-4 text-black'>
             Daftar Verifikasi Pasien
           </h2>
 
           <div className='overflow-x-auto mb-auto min-h-[350px]'>
             <table className='min-w-full table-auto'>
-              <thead className='bg-gray-200'>
+              <thead className='bg-gray-50 border-b'>
                 <tr>
                   <th className='px-2 md:px-4 py-4  text-sm font-semibold text-black text-center'>
                     No.
                   </th>
-                  <th className='px-2 md:px-4 py-4  text-sm font-semibold text-black text-center'>
+                  <th className='px-2 md:px-4 py-4  text-sm font-semibold text-black text-left'>
                     Nama Pasien
                   </th>
                   <th className='hidden sm:table-cell px-2 md:px-4 py-4  text-sm font-semibold text-black text-center'>
                     ID Diagnosis
                   </th>
-                  <th className='hidden sm:table-cell px-2 md:px-4 py-4 text-sm font-semibold text-black text-center'>
+                  <th className='hidden sm:table-cell px-2 md:px-4 py-4 text-sm font-semibold text-black text-left'>
                     Diagnosis AI
                   </th>
-                  <th className='hidden sm:table-cell px-2 md:px-4 py-4 text-sm font-semibold text-black text-center'>
+                  <th className='hidden sm:table-cell px-2 md:px-4 py-4 text-sm font-semibold text-black text-left'>
                     Diagnosis Dokter
                   </th>
                   <th className='px-2 md:px-4 py-4  text-sm font-semibold text-black text-center'>
@@ -236,16 +236,16 @@ export default function VerifikasiDiagnosis() {
                     <td className='px-2 py-8 text-black text-center'>
                       {indexOfFirstItem + index + 1}
                     </td>
-                    <td className='px-2 md:px-4 py-8 text-black text-center '>
+                    <td className='px-2 md:px-4 py-8 text-black text-left '>
                       {pasien.nama}
                     </td>
                     <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-black text-center'>
                       {pasien.diagnosisId}
                     </td>
-                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-black text-center'>
+                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-black text-left'>
                       {pasien.diagnosisAI}
                     </td>
-                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-black text-center'>
+                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-black text-left'>
                       {pasien.hasilDokter}
                     </td>
                     <td className='px-2 md:px-4 py-8 text-center'>
@@ -262,14 +262,13 @@ export default function VerifikasiDiagnosis() {
             </table>
           </div>
 
-          <div className='flex justify-between items-center mt-4 overflow-x-auto'>
+          <div className='flex justify-between items-center mt-4'>
             <button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
-              className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm ${
+              className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
                 currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''
               }`}
-              style={{ flexShrink: 0 }}
             >
               <FaChevronLeft className='mr-2' /> Previous
             </button>
@@ -284,7 +283,7 @@ export default function VerifikasiDiagnosis() {
                     <li key={index}>
                       <button
                         onClick={() => paginate(index + 1)}
-                        className={`py-1 px-3 rounded-md border text-xs sm:text-sm ${
+                        className={`py-1 px-2 sm:px-3 rounded-md border text-xs sm:text-sm ${
                           currentPage === index + 1
                             ? 'bg-blue-500 text-white'
                             : 'bg-white text-gray-700'
@@ -312,12 +311,11 @@ export default function VerifikasiDiagnosis() {
             <button
               onClick={goToNextPage}
               disabled={currentPage === totalPages}
-              className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm ${
+              className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
                 currentPage === totalPages
                   ? 'cursor-not-allowed opacity-50'
                   : ''
               }`}
-              style={{ flexShrink: 0 }}
             >
               Next <FaChevronRight className='ml-2' />
             </button>
