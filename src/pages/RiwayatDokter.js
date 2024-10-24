@@ -136,7 +136,7 @@ export default function RiwayatDokter() {
           <h1 className='text-3xl font-bold mb-6 text-black'>Riwayat</h1>
         </div>
 
-        <div className='bg-white p-6 rounded-lg shadow-lg'>
+        <div className='bg-white p-6 rounded-lg '>
           <h2 className='text-xl font-semibold mb-4 text-black'>
             Daftar Riwayat
           </h2>

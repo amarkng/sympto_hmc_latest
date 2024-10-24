@@ -44,10 +44,10 @@ export default function UnggahArtikelD() {
           </button>
         </div>
 
-        <div className='flex-1 p-8'>
+        <div className='flex-1 p-6'>
           <h1 className='text-3xl font-bold text-black mb-6'>Unggah Artikel</h1>
 
-          <div className='bg-white p-8 rounded-lg shadow-md'>
+          <div className='bg-white p-6 rounded-lg shadow-md'>
             <form className='space-y-6'>
               <div>
                 <label className='block text-sm font-medium text-black mb-2'>
