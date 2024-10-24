@@ -72,14 +72,14 @@ export default function ArticleFull() {
                   <h3 className='text-lg font-semibold text-gray-900'>
                     {article.title}
                   </h3>
-                  <p className='text-gray-600 mt-2 text-sm'>
+                  <p className='text-sm sm:text-base text-gray-400 mt-2'>
                     {article.description}
                   </p>
-                  <div className='flex justify-between items-center mt-4'>
-                    <span className='bg-blue-500 text-white text-xs px-3 py-1 rounded-full'>
+                  <div className='flex items-center mt-4'>
+                    <span className='bg-blue-600 text-white text-xs sm:text-sm px-3 py-1 rounded-full'>
                       {article.category}
                     </span>
-                    <span className='text-gray-500 text-xs'>
+                    <span className='text-xs sm:text-sm text-black ml-5'>
                       {article.date}
                     </span>
                   </div>

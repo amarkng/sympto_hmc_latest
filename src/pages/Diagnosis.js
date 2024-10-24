@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { TbEye, TbSearch, TbPlus } from 'react-icons/tb';
+import { TbEye, TbSearch, TbPlus, TbTrash } from 'react-icons/tb';
+import { MdOutlineEdit } from 'react-icons/md';
+
 import Navbar from '../app/components/Navbar';
 import Footer from '../app/components/Footer';
 
@@ -24,6 +26,7 @@ export default function Diagnosis() {
   const [isAddSymptomModalOpen, setIsAddSymptomModalOpen] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const handleAddSymptom = (symptom) => {
     if (!symptoms.includes(symptom)) {
@@ -44,12 +47,12 @@ export default function Diagnosis() {
       <Navbar />
 
       <section className='flex-grow flex items-center justify-center bg-white'>
-        <div className='max-w-3xl w-full px-4 lg:px-0'>
+        <div className='max-w-full w-full px-4 lg:px-0'>
           <h1 className='text-2xl lg:text-4xl font-bold text-black text-center mb-6 mt-2'>
-            Periksa Kesehatanmu dengan Prediksi AI Akurat!
+            Periksa Kesehatanmu dengan <br /> Prediksi AI Akurat!
           </h1>
 
-          <div className='bg-gray-50 p-8 max-w-auto rounded-lg'>
+          <div className='bg-gray-50 p-12 max-w-7xl mx-auto rounded-lg'>
             <h2 className='text-lg font-semibold text-gray-700 text-center mb-6'>
               Pilih gejala untuk mendapatkan prediksi AI
             </h2>
@@ -58,10 +61,19 @@ export default function Diagnosis() {
               {symptoms.map((symptom, index) => (
                 <div
                   key={index}
-                  onDoubleClick={() => handleDeleteSymptom(symptom)}
-                  className='symptom-button px-6 py-3 rounded-xl text-center border border-blue-400 text-black hover:bg-blue-50 transition min-w-[140px] flex items-center justify-center'
+                  className='relative group px-6 py-3 rounded-xl text-center border border-blue-400 text-black transition min-w-[140px] flex items-center justify-center'
                 >
                   {symptom}
+
+                  {isEditMode && (
+                    <button
+                      className='absolute inset-0 bg-hapus-diag rounded-xl bg-opacity-100  text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition'
+                      onClick={() => handleDeleteSymptom(symptom)}
+                    >
+                      <TbTrash className='text-lg mr-2' />
+                      Hapus
+                    </button>
+                  )}
                 </div>
               ))}
 
@@ -74,9 +86,19 @@ export default function Diagnosis() {
               </div>
             </div>
 
-            <div className='flex justify-center'>
+            <div className='flex justify-center gap-4 lg:mt-12'>
               <button
-                className='bg-blue-950 text-white px-8 py-3 mt-4 rounded-full hover:bg-blue-1000 transition flex items-center justify-center gap-2'
+                className={`${
+                  isEditMode ? 'bg-yellow-600' : 'bg-yellow-400'
+                } text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-3 text-sm sm:text-base md:text-lg rounded-full hover:bg-yellow-600 transition flex items-center justify-center gap-2`}
+                onClick={() => setIsEditMode(!isEditMode)}
+              >
+                <MdOutlineEdit className='text-xl' />
+                Edit
+              </button>
+
+              <button
+                className='bg-blue-950 text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-3 text-sm sm:text-base md:text-lg rounded-full hover:bg-blue-1000 transition flex items-center justify-center gap-2'
                 onClick={() => setIsResultModalOpen(true)}
               >
                 <TbEye className='text-xl' />

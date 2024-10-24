@@ -256,6 +256,20 @@ export default function KonsultasiDokter() {
             </button>
           </div>
         </div>
+        {isVideoOpen && (
+          <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50'>
+            <div className='bg-white w-[90%] max-w-4xl rounded-lg shadow-lg p-6'>
+              <div className='bg-blue-600 text-white py-4 px-6 rounded-t-lg flex justify-between items-center'>
+                <h2 className='text-xl font-semibold'>Start Meeting</h2>
+                <button onClick={() => setIsVideoOpen(false)}>Close</button>
+              </div>
+              <div
+                id='jitsi-container'
+                style={{ width: '100%', height: '500px' }}
+              ></div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

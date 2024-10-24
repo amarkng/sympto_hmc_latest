@@ -4,93 +4,72 @@ export default function Article() {
   const articles = [
     {
       id: 1,
-      title: 'Healthy Eating: Tips and Tricks For A Balanced Diet',
+      title: 'The Golden Sands Of Florida And California',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed et donec purus viverra.',
+        'Lorem ipsum dolor sit amet, con turadip iscingelit. In sed et donec purus viverra. Sit justo velit, eu sed.',
       category: 'Health',
       date: '20 Maret 2024',
-      imageUrl: '/assets/images/placeholder1.jpg',
+      imageUrl: '/assets/images/articlePlaceholder1.png',
     },
     {
       id: 2,
-      title: 'Healthy Eating: Tips and Tricks For A Balanced Diet',
-      description: 'lorem euismod dolor nec pretium. Nunc ut tristique massa.',
+      title: 'The Golden Sands Of Florida And California',
+      description:
+        'Lorem ipsum dolor sit amet, con turadip iscingelit. In sed et donec purus viverra. Sit justo velit, eu sed.',
       category: 'Health',
       date: '15 Februari 2024',
-      imageUrl: '/assets/images/placeholder1.jpg',
+      imageUrl: '/assets/images/articlePlaceholder1.png',
     },
     {
       id: 3,
-      title: 'Healthy Eating: Tips and Tricks For A Balanced Diet',
-      description: 'lorem euismod dolor nec pretium. Nunc ut tristique massa.',
+      title: 'The Golden Sands Of Florida And California',
+      description:
+        'Lorem ipsum dolor sit amet, con turadip iscingelit. In sed et donec purus viverra. Sit justo velit, eu sed.',
       category: 'Health',
       date: '10 Januari 2024',
-      imageUrl: '/assets/images/placeholder1.jpg',
-    },
-    {
-      id: 4,
-      title: 'The Future of Technology: AI and Beyond',
-      description:
-        'Maecenas sed diam eget risus varius blandit sit amet non magna.',
-      category: 'Technology',
-      date: '30 Desember 2023',
-      imageUrl: '/assets/images/placeholder1.jpg',
-    },
-    {
-      id: 5,
-      title: 'Sustainable Living: How To Go Green',
-      description: 'Aenean lacinia bibendum nulla sed consectetur.',
-      category: 'Environment',
-      date: '5 November 2023',
-      imageUrl: '/assets/images/placeholder1.jpg',
-    },
-    {
-      id: 5,
-      title: 'Rizzler God',
-      description: 'Aenean lacinia bibendum nulla sed consectetur.',
-      category: 'Environment',
-      date: '5 November 2023',
-      imageUrl: '/assets/images/placeholder1.jpg',
+      imageUrl: '/assets/images/articlePlaceholder1.png',
     },
   ];
 
   return (
-    <section className='relative bg-blue-500 py-16 px-6 overflow-hidden'>
-      <div className='absolute bottom-0 left-[-150px] w-80 h-80 bg-blue-800 rounded-full opacity-44'></div>
-      <div className='absolute top-0 right-[-150px] w-80 h-80 bg-blue-800 rounded-full opacity-44'></div>
+    <section className='relative bg-article-blue py-16 lg:py-32 px-6 overflow-hidden'>
+      <div className='absolute bottom-[-150px] left-[0%] transform -translate-x-1/2 w-[720px] h-[720px] bg-blue-900 rounded-full opacity-50'></div>
+      <div className='absolute top-[-300px] right-[-300px] w-[720px] h-[720px] bg-blue-800 rounded-full opacity-50'></div>
 
-      <div className='max-w-7xl mx-auto relative z-10'>
-        <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 text-center'>
+      <div className='max-w-7xl  mx-auto relative z-10'>
+        <h2 className='text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-8 text-center'>
           Artikel Terbaru
         </h2>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8'>
           {articles.slice(0, 4).map((article) => (
             <div
               key={article.id}
-              className='bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow'
+              className='bg-white rounded-xl  shadow-lg overflow-hidden hover:shadow-xl transition-shadow '
             >
-              <Image
-                src={article.imageUrl}
-                alt={article.title}
-                className='object-cover'
-                width={1024}
-                height={576}
-                layout='responsive'
-              />
-              <div className='p-4 sm:p-6'>
+              <div className='w-full' style={{ aspectRatio: '16/9' }}>
+                <Image
+                  src={article.imageUrl}
+                  alt={article.title}
+                  className='object-cover w-full h-full'
+                  width={1024}
+                  height={576}
+                  layout='responsive'
+                />
+              </div>
+              <div className='p-4 sm:p-8'>
                 <h3 className='text-base sm:text-lg md:text-xl font-semibold text-gray-900'>
                   {article.title}
                 </h3>
 
-                <p className='text-sm sm:text-base text-gray-700 mt-2'>
+                <p className='text-sm sm:text-base text-gray-400 mt-2'>
                   {article.description}
                 </p>
-                <div className='flex justify-between items-center mt-4'>
-                  <span className='bg-blue-500 text-white text-xs sm:text-sm px-3 py-1 rounded-full'>
+                <div className='flex items-center mt-4'>
+                  <span className='bg-blue-600 text-white text-xs sm:text-sm px-3 py-1 rounded-full'>
                     {article.category}
                   </span>
-                  <span className='text-xs sm:text-sm text-gray-500'>
+                  <span className='text-xs sm:text-sm text-black ml-5'>
                     {article.date}
                   </span>
                 </div>

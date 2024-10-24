@@ -141,7 +141,7 @@ export default function VerifikasiDiagnosis() {
         'Sulit bernapas',
         'Tidak nafsu makan',
       ],
-      diagnosisAI: 'Radang Paru-Paru',
+      diagnosisAI: 'Infeksi Saluran Pernapasan	',
     },
     {
       id: 10,

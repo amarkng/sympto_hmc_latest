@@ -85,8 +85,8 @@ export default function NavbarDoc({ toggleSidebar, isSidebarOpen }) {
         <MenuLink
           Icon={HiOutlineDocumentArrowUp}
           label='Unggah Artikel'
-          href='#UnggahArtikel'
-          isActive={isActive('/UnggahArtikel')}
+          href='/DaftarArtikelD'
+          isActive={isActive('/DaftarArtikelD') || isActive('/UnggahArtikelD')}
         />
       </nav>
 

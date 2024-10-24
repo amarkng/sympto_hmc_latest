@@ -40,7 +40,7 @@ export default function ArticleDetail() {
           <Image
             src={article.imageUrl}
             alt={article.title}
-            className='object-cover rounded-lg'
+            className='object-cover rounded-lg '
             width={1024}
             height={576}
             layout='responsive'
