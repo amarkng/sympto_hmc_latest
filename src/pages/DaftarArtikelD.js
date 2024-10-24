@@ -220,7 +220,7 @@ export default function DaftarArtikelD() {
               </table>
             </div>
             {isModalOpen && (
-              <div className='fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50'>
+              <div className='fixed inset-0 flex justify-center items-center z-50'>
                 <div className='bg-white p-8 rounded-lg shadow-lg max-w-sm w-full text-center'>
                   <h2 className='text-lg font-bold mb-4 text-black'>
                     Hapus Artikel

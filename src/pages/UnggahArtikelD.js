@@ -137,10 +137,12 @@ export default function UnggahArtikelD() {
         </div>
 
         {isModalOpen && (
-          <div className='fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center'>
+          <div className='fixed inset-0 flex justify-center items-center'>
             <div className='bg-white p-8 rounded-lg shadow-lg max-w-xs w-full text-center'>
-              <h2 className='text-xl font-semibold mb-4'>Unggah Artikel</h2>
-              <p className='text-gray-700 mb-6'>
+              <h2 className='text-xl font-semibold mb-4 text-black'>
+                Unggah Artikel
+              </h2>
+              <p className=' mb-6 text-black'>
                 Apakah anda yakin ingin mengunggah artikel?
               </p>
               <div className='flex flex-col gap-4'>
