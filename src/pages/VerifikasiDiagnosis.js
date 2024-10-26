@@ -210,22 +210,22 @@ export default function VerifikasiDiagnosis() {
             <table className='min-w-full table-auto'>
               <thead className='bg-gray-50 border-b'>
                 <tr>
-                  <th className='px-2 md:px-4 py-4  text-sm font-semibold text-black text-center'>
+                  <th className='px-2 md:px-4 py-4  text-sm font-semibold text-gray-table text-center'>
                     No.
                   </th>
-                  <th className='px-2 md:px-4 py-4  text-sm font-semibold text-black text-left'>
+                  <th className='px-2 md:px-4 py-4  text-sm font-semibold text-gray-table text-left'>
                     Nama Pasien
                   </th>
-                  <th className='hidden sm:table-cell px-2 md:px-4 py-4  text-sm font-semibold text-black text-center'>
+                  <th className='hidden sm:table-cell px-2 md:px-4 py-4  text-sm font-semibold text-gray-table text-center'>
                     ID Diagnosis
                   </th>
-                  <th className='hidden sm:table-cell px-2 md:px-4 py-4 text-sm font-semibold text-black text-left'>
+                  <th className='hidden sm:table-cell px-2 md:px-4 py-4 text-sm font-semibold text-gray-table text-left'>
                     Diagnosis AI
                   </th>
-                  <th className='hidden sm:table-cell px-2 md:px-4 py-4 text-sm font-semibold text-black text-left'>
+                  <th className='hidden sm:table-cell px-2 md:px-4 py-4 text-sm font-semibold text-gray-table text-left'>
                     Diagnosis Dokter
                   </th>
-                  <th className='px-2 md:px-4 py-4  text-sm font-semibold text-black text-center'>
+                  <th className='px-2 md:px-4 py-4  text-sm font-semibold text-gray-table text-center'>
                     Status
                   </th>
                 </tr>
@@ -233,24 +233,24 @@ export default function VerifikasiDiagnosis() {
               <tbody>
                 {currentItems.map((pasien, index) => (
                   <tr key={pasien.id} className='border-b'>
-                    <td className='px-2 py-8 text-black text-center'>
+                    <td className='px-2 py-8 text-gray-table text-center'>
                       {indexOfFirstItem + index + 1}
                     </td>
                     <td className='px-2 md:px-4 py-8 text-black text-left '>
                       {pasien.nama}
                     </td>
-                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-black text-center'>
+                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-gray-table text-center'>
                       {pasien.diagnosisId}
                     </td>
-                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-black text-left'>
+                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-gray-table text-left'>
                       {pasien.diagnosisAI}
                     </td>
-                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-black text-left'>
+                    <td className='hidden sm:table-cell px-2 md:px-4 py-8 text-gray-table text-left'>
                       {pasien.hasilDokter}
                     </td>
                     <td className='px-2 md:px-4 py-8 text-center'>
                       <button
-                        className='text-white min-w-[80px] sm:min-w-[90px] bg-blue-500 p-2 rounded-lg text-sm hover:bg-blue-700'
+                        className='text-white min-w-[80px] sm:min-w-[90px] bg-blue-600 p-2 px-3 py-1  rounded-lg text-sm hover:bg-blue-700'
                         onClick={() => toggleModal(pasien)}
                       >
                         Details
@@ -325,7 +325,7 @@ export default function VerifikasiDiagnosis() {
         {/* Modal */}
         {isModalOpen && (
           <div className='fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-50'>
-            <div className='bg-white rounded-xl shadow-lg w-11/12 sm:w-4/6 md:w-3/5 lg:w-2/4 max-h-screen overflow-y-auto'>
+            <div className='bg-white w-11/12 sm:w-4/6 md:w-3/5 lg:w-2/4 max-h-[80vh] rounded-xl shadow-lg overflow-y-auto'>
               <div className='relative bg-blue-600 rounded-t-xl p-4 flex justify-center items-center'>
                 <h2 className='text-lg sm:text-xl font-bold text-white'>
                   Detail Pasien

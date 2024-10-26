@@ -11,6 +11,7 @@ module.exports = {
         'gray-diag': '#F2F5FA',
         'hapus-diag': '#989898',
         'article-blue': '#0F67FD',
+        'gray-table': '#475467',
       },
     },
   },

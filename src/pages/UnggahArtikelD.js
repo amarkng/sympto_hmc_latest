@@ -10,6 +10,7 @@ export default function UnggahArtikelD() {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   );
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -27,6 +28,10 @@ export default function UnggahArtikelD() {
     closeModal();
   };
 
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
   return (
     <div className='flex min-h-screen'>
       <NavbarDoc toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
@@ -36,7 +41,6 @@ export default function UnggahArtikelD() {
           isSidebarOpen ? 'ml-64' : 'ml-0'
         } overflow-y-auto`}
       >
-        {/* Mobile Header */}
         <div className='md:hidden flex justify-between items-center mb-6'>
           <h1 className='text-2xl font-bold text-blue-600'>Daftar Artikel</h1>
           <button onClick={toggleSidebar}>
@@ -93,14 +97,17 @@ export default function UnggahArtikelD() {
                 <label className='block text-sm font-medium text-black mb-2'>
                   Upload Gambar
                 </label>
-                <div className='flex flex-col sm:flex-row items-center sm:items-start sm:space-x-1 w-full'>
+                <div className='flex flex-col items-start w-full'>
                   <input
                     type='file'
-                    className='file:mr-0 file:py-2 file:px-4 file:w-full sm:file:w-48 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-black hover:file:bg-gray-200'
+                    onChange={handleFileChange}
+                    className='file:py-2 file:px-4 w-full sm:w-auto file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-black hover:file:bg-gray-200'
                   />
-                  <span className='text-sm text-gray-500 mt-2 sm:mt-0 w-full sm:w-auto text-center sm:text-left'>
-                    Tidak ada file yang dipilih.
-                  </span>
+                  {!selectedFile && (
+                    <span className='text-sm text-gray-500 mt-2 text-left'>
+                      Tidak ada file yang dipilih.
+                    </span>
+                  )}
                 </div>
               </div>
 

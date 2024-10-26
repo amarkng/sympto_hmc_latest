@@ -110,6 +110,7 @@ export default function KonsultasiDokter() {
         className={`flex-1 p-6 bg-gray-50 transition-all duration-300 ${
           isSidebarOpen ? 'ml-64' : 'ml-0'
         } overflow-y-auto`}
+        style={{ maxHeight: '100vh' }}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
           <h1 className='text-2xl font-bold text-blue-600'>Konsultasi</h1>
@@ -131,22 +132,22 @@ export default function KonsultasiDokter() {
             <table className='min-w-full table-auto'>
               <thead className='bg-gray-50 border-b'>
                 <tr>
-                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4  text-center text-sm font-semibold text-gray-table'>
                     No.
                   </th>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4  text-left text-sm font-semibold text-gray-table'>
                     Nama Pasien
                   </th>
-                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4  text-center text-sm font-semibold text-gray-table'>
                     ID Diagnosis
                   </th>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4  text-left text-sm font-semibold text-gray-table'>
                     Hasil Diagnosis AI
                   </th>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4  text-left text-sm font-semibold text-gray-table'>
                     Diagnosis Dokter
                   </th>
-                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4  text-center text-sm font-semibold text-gray-table'>
                     Status
                   </th>
                 </tr>
@@ -154,10 +155,10 @@ export default function KonsultasiDokter() {
               <tbody>
                 {currentItems.map((entry, index) => (
                   <tr key={entry.id} className='border-b'>
-                    <td className='px-4 py-6 text-black text-center'>
+                    <td className='px-2 md:px-4 py-8 text-gray-table text-center'>
                       {indexOfFirstItem + index + 1}
                     </td>
-                    <td className='px-4 py-6 text-black'>
+                    {/* <td className='px-2 md:px-4 py-8 text-black'>
                       <div className='flex items-center'>
                         <Image
                           src='/assets/images/logoPasien.png'
@@ -170,24 +171,31 @@ export default function KonsultasiDokter() {
                           <p className='text-sm font-medium'>{entry.name}</p>
                         </div>
                       </div>
+                    </td> */}
+                    <td className='px-2 md:px-4 py-8 text-black '>
+                      {entry.name}
                     </td>
-                    <td className='px-4 py-6 text-black text-center'>
+                    <td className='px-2 md:px-4 py-8 text-gray-table text-center'>
                       {entry.diagId}
                     </td>
-                    <td className='px-4 py-6 text-black'>{entry.aiResult}</td>
-                    <td className='px-4 py-6 text-black'>
+                    <td className='px-2 md:px-4 py-8 text-gray-table'>
+                      {entry.aiResult}
+                    </td>
+                    <td className='px-2 md:px-4 py-8 text-gray-table'>
                       {entry.doctorResult}
                     </td>
-                    <td className='px-4 py-6 text-center'>
+                    <td className='px-2 md:px-4 py-8 text-center'>
                       {entry.status === 'Start Meeting' ? (
                         <button
                           onClick={openVideoCall}
-                          className='bg-blue-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700'
+                          className='bg-blue-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700'
                         >
                           Start Meeting
                         </button>
                       ) : (
-                        <span className='text-gray-500 text-sm'>Completed</span>
+                        <span className='text-gray-table text-sm'>
+                          Completed
+                        </span>
                       )}
                     </td>
                   </tr>
@@ -258,7 +266,7 @@ export default function KonsultasiDokter() {
         </div>
         {isVideoOpen && (
           <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50'>
-            <div className='bg-white w-[90%] max-w-4xl rounded-lg shadow-lg p-6'>
+            <div className='bg-white w-[90%] max-w-4xl rounded-lg shadow-lg '>
               <div className='bg-blue-600 text-white py-4 px-6 rounded-t-lg flex justify-between items-center'>
                 <h2 className='text-xl font-semibold'>Start Meeting</h2>
                 <button onClick={() => setIsVideoOpen(false)}>Close</button>

@@ -61,7 +61,7 @@ export default function DoctorSettings() {
           <div className='flex justify-center mb-6'>
             <div className='relative'>
               <Image
-                src='/assets/images/placeholder2.png'
+                src='/assets/images/logoDokter.png'
                 alt='Doctor Profile'
                 className='w-20 h-20 rounded-full mr-4'
                 width={80}
@@ -169,13 +169,13 @@ export default function DoctorSettings() {
           <div className='flex flex-col items-center justify-center mt-6 space-y-4 md:flex-row md:space-y-0 md:space-x-4'>
             <button
               onClick={handleSave}
-              className='px-11 py-3 bg-blue-500 font-semibold hover:bg-blue-600 text-white rounded-lg '
+              className='px-11 py-3 bg-blue-600 font-semibold hover:bg-blue-700 text-white rounded-lg '
             >
               Simpan
             </button>
             <button
               onClick={handleCancel}
-              className='px-10 py-3 border font-semibold border-gray-400 text-gray-500 hover:bg-gray-300 rounded-lg'
+              className='px-10 py-3 border font-semibold border-gray-400 text-gray-400 hover:bg-gray-300 rounded-lg'
             >
               Batalkan
             </button>

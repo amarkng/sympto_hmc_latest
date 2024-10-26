@@ -136,7 +136,7 @@ export default function RiwayatDokter() {
           <h1 className='text-3xl font-bold mb-6 text-black'>Riwayat</h1>
         </div>
 
-        <div className='bg-white p-6 rounded-lg '>
+        <div className='bg-white p-6 rounded-lg shadow-lg '>
           <h2 className='text-xl font-semibold mb-4 text-black'>
             Daftar Riwayat
           </h2>
@@ -145,19 +145,19 @@ export default function RiwayatDokter() {
             <table className='min-w-full table-auto'>
               <thead className='bg-gray-50 border-b'>
                 <tr>
-                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4 text-center text-sm font-semibold text-gray-table'>
                     No.
                   </th>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                     Nama Pasien
                   </th>
-                  <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4 text-center text-sm font-semibold text-gray-table'>
                     ID Diagnosis
                   </th>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                     Hasil Diagnosis AI
                   </th>
-                  <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+                  <th className='px-2 md:px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                     Diagnosis Dokter
                   </th>
                 </tr>
@@ -165,17 +165,19 @@ export default function RiwayatDokter() {
               <tbody>
                 {currentItems.map((item, index) => (
                   <tr key={item.id} className='border-b'>
-                    <td className='px-4 py-6 text-black text-center'>
+                    <td className='px-2 md:px-4 py-8 text-gray-table text-center'>
                       {index + 1 + (currentPage - 1) * itemsPerPage}
                     </td>
-                    <td className='px-4 py-6 text-black'>
+                    <td className='px-2 md:px-4 py-8 text-black'>
                       <p className='text-sm font-medium'>{item.nama}</p>
                     </td>
-                    <td className='px-4 py-6 text-black text-center'>
+                    <td className='px-2 md:px-4 py-8 text-gray-table text-center'>
                       {item.idDiagnosis}
                     </td>
-                    <td className='px-4 py-6 text-black'>{item.hasilAI}</td>
-                    <td className='px-4 py-6 text-black'>
+                    <td className='px-2 md:px-4 py-8 text-gray-table'>
+                      {item.hasilAI}
+                    </td>
+                    <td className='px-2 md:px-4 py-8 text-gray-table'>
                       {item.diagnosisDokter}
                     </td>
                   </tr>
