@@ -151,8 +151,8 @@ export default function SignUp() {
             </button>
           </form>
 
-          <p className='mt-6 text-center text-gray-600'>
-            Already Have An Account?{' '}
+          <p className='mt-6 text-center text-gray-500'>
+            Apakah Sudah Ada Akun?{' '}
             <Link href='/SignIn' className='text-blue-600'>
               Log In
             </Link>
