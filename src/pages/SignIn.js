@@ -5,18 +5,19 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md';
 
 export default function SignIn() {
   const [role, setRole] = useState('');
+  const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const router = useRouter();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (role === 'doctor') {
+    if (password === 'dokter') {
       router.push({
         pathname: '/doctor-dashboard',
         query: { role: 'doctor' },
       });
-    } else if (role === 'patient') {
+    } else if (password === 'pasien') {
       router.push({
         pathname: '/patient-dashboard',
         query: { role: 'patient' },
@@ -53,7 +54,7 @@ export default function SignIn() {
               </label>
               <input
                 type='email'
-                placeholder='Enter your email'
+                placeholder='Masukkan email anda'
                 className='mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black'
               />
             </div>
@@ -71,8 +72,10 @@ export default function SignIn() {
               <div className='relative'>
                 <input
                   type={passwordVisible ? 'text' : 'password'}
-                  placeholder='Enter your password'
+                  placeholder='Masukkan kata sandi anda'
                   className='mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   type='button'
@@ -88,7 +91,7 @@ export default function SignIn() {
               </div>
             </div>
 
-            <div className='mb-4'>
+            {/* <div className='mb-4'>
               <label className='block text-sm font-medium text-gray-700'>
                 Role
               </label>
@@ -101,15 +104,15 @@ export default function SignIn() {
                 <option value='doctor'>Doctor</option>
                 <option value='patient'>Patient</option>
               </select>
-            </div>
+            </div> */}
 
             <button className='w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition'>
               Masuk
             </button>
           </form>
 
-          <p className='mt-6 text-center text-gray-600'>
-            Want to create an account?{' '}
+          <p className='mt-6 text-center text-gray-500'>
+            Apakah Belum Ada Akun?{' '}
             <Link href='/SignUp' className='text-blue-600'>
               Register
             </Link>

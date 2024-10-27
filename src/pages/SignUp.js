@@ -110,9 +110,9 @@ export default function SignUp() {
                 onChange={(e) => setRole(e.target.value)}
                 className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black' // Text hitam
               >
-                <option value=''>Choose a role</option>
-                <option value='doctor'>Doctor</option>
-                <option value='patient'>Patient</option>
+                <option value=''>Pilih Role</option>
+                <option value='doctor'>Dokter</option>
+                <option value='patient'>Pasien</option>
               </select>
             </div>
 
