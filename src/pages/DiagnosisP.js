@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import NavbarPatient from '../app/components/NavbarPatient';
 import HistoryDiagnosisP from '../app/components/HistoryDiagnosisP';
-import { TbEyeSearch } from 'react-icons/tb';
+import { TbEye, TbPlus, TbSearch, TbTrash } from 'react-icons/tb';
+import { MdOutlineEdit } from 'react-icons/md';
 import Image from 'next/image';
 
 export default function DiagnosisP() {
@@ -11,32 +12,43 @@ export default function DiagnosisP() {
     'Suara serak',
     'Batuk terus-menerus',
     'Nyeri dada',
+    'Tubuh Lemas',
+    'Sakit Kepala',
   ]);
-  const aiDiagnosis = {
-    namaPenyakit: 'Demam Berdarah',
-    gejala: ['Sesak napas', 'Suara serak', 'Batuk terus-menerus', 'Nyeri dada'],
-  };
+  const gejalaList = [
+    'Demam tinggi',
+    'Sakit kepala',
+    'Tubuh lemas',
+    'Sakit tenggorokan',
+    'Mual',
+    'Muntah',
+    'Diare',
+  ];
 
   const [newSymptom, setNewSymptom] = useState('');
   const [isAddSymptomModalOpen, setIsAddSymptomModalOpen] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleAddSymptom = (e) => {
-    e.preventDefault();
-    if (newSymptom.trim() !== '') {
-      setSymptoms([...symptoms, newSymptom]);
-      setNewSymptom('');
+  const handleAddSymptom = (symptom) => {
+    if (!symptoms.includes(symptom)) {
+      setSymptoms([...symptoms, symptom]);
     }
   };
 
   const handleDeleteSymptom = (symptomToDelete) => {
     setSymptoms(symptoms.filter((symptom) => symptom !== symptomToDelete));
   };
+
+  const filteredGejala = gejalaList.filter((gejala) =>
+    gejala.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className='flex min-h-screen bg-gray-100'>
@@ -46,11 +58,10 @@ export default function DiagnosisP() {
       />
 
       <div
-        className={`flex-1 p-4 lg:p-8 bg-gray-100 transition-all duration-300 min-w-0 ${
+        className={`flex-1 p-6 bg-gray-50 transition-all duration-300 overflow-auto ${
           isSidebarOpen ? 'ml-64' : 'ml-0'
         }`}
       >
-        {/* Hamburger mobile */}
         <div className='md:hidden flex justify-between items-center mb-6'>
           <h1 className='text-2xl font-bold text-blue-600'>SymptoSense</h1>
           <button onClick={toggleSidebar}>
@@ -64,34 +75,61 @@ export default function DiagnosisP() {
           </h1>
         </div>
 
-        <section className='bg-white p-6 rounded-lg shadow mb-8 w-full max-w-full overflow-hidden'>
+        {/* Diagnosis Section */}
+        <section
+          className={`bg-white p-6 rounded-lg shadow mb-8 w-full max-w-full
+          ${isSidebarOpen ? 'hidden' : 'block'}`}
+        >
+          {' '}
           <h2 className='text-md lg:text-xl font-bold mb-4 text-left text-black'>
             Cek Diagnosis dengan AI
           </h2>
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6'>
+          <div
+            className={`flex flex-wrap justify-center gap-4 mb-6 
+            }`}
+          >
             {symptoms.map((symptom, index) => (
               <div
                 key={index}
-                onDoubleClick={() => handleDeleteSymptom(symptom)}
-                className='border border-blue-400 text-black flex justify-center items-center min-w-[150px] min-h-[60px] px-6 py-4 rounded-full text-lg font-semibold cursor-pointer hover:bg-blue-50 transition'
+                className='relative group flex-grow-0 flex-shrink-0 basis-[23%] px-10 py-5 rounded-xl text-center border border-blue-400 text-black transition min-w-[160px] flex items-center justify-center'
               >
                 {symptom}
+
+                {isEditMode && (
+                  <button
+                    className='absolute inset-0 bg-hapus-diag rounded-xl bg-opacity-100 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition'
+                    onClick={() => handleDeleteSymptom(symptom)}
+                  >
+                    <TbTrash className='text-lg mr-2' />
+                    Hapus
+                  </button>
+                )}
               </div>
             ))}
             <button
               onClick={() => setIsAddSymptomModalOpen(true)}
-              className='border border-blue-400 text-blue-600 flex justify-center items-center min-w-[150px] min-h-[60px] px-6 py-4 rounded-full text-lg font-semibold cursor-pointer hover:bg-blue-100 transition'
+              className='symptom-button border-dashed border-2 border-blue-500 bg-blue-300 text-white text-bold px-4 py-3 lg:px-10 lg:py-5 rounded-xl cursor-pointer hover:bg-blue-200 transition min-w-[120px] flex items-center justify-center gap-1 lg:gap-2'
             >
-              + Tambah Gejala
+              <TbPlus className='lg:text-lg text-md mr-2' />
+              Tambah Gejala
             </button>
           </div>
-
-          <div className='text-center'>
+          <div className='flex justify-center gap-6 lg:mt-12'>
             <button
-              className='bg-blue-600 text-white px-8 py-3 rounded-full flex items-center justify-center mx-auto hover:bg-blue-700 transition'
+              className={`${
+                isEditMode ? 'bg-yellow-600' : 'bg-yellow-400'
+              } text-white lg:px-6 lg:py-4  px-3 py-2 text-base  lg:text-lg text-md rounded-full hover:bg-yellow-600 transition flex items-center justify-center gap-1 lg:gap-2`}
+              onClick={() => setIsEditMode(!isEditMode)}
+            >
+              <MdOutlineEdit className='lg:text-lg text-md mr-1' />
+              Edit
+            </button>
+
+            <button
+              className='bg-blue-950 hover:bg-black text-white lg:px-6 lg:py-4 px-3 py-2 text-base md:text-lg rounded-full transition flex items-center justify-center gap-1 lg:gap-2'
               onClick={() => setIsResultModalOpen(true)}
             >
-              <TbEyeSearch className='mr-2' />
+              <TbEye className='text-2xl' />
               Lihat Hasil Gejala
             </button>
           </div>
@@ -102,10 +140,11 @@ export default function DiagnosisP() {
         </section>
       </div>
 
+      {/* Modal Tambah Gejala */}
       {isAddSymptomModalOpen && (
         <div className='fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50'>
           <div className='bg-white rounded-xl shadow-lg w-11/12 sm:w-4/6 md:w-3/5 lg:w-2/4 max-h-screen overflow-y-auto'>
-            <div className='relative bg-blue-600 rounded-t-xl p-4 flex justify-center items-center'>
+            <div className='relative bg-blue-600 p-4 rounded-t-xl flex justify-center items-center'>
               <h2 className='text-lg sm:text-xl font-bold text-white'>
                 Tambah Gejala
               </h2>
@@ -117,20 +156,37 @@ export default function DiagnosisP() {
               </button>
             </div>
 
-            <div className='p-6'>
-              <input
-                type='text'
-                placeholder='Cari gejala penyakit...'
-                className='w-full p-4 mb-4 border border-gray-300 rounded-lg text-black'
-                value={newSymptom}
-                onChange={(e) => setNewSymptom(e.target.value)}
-              />
-              <button
-                onClick={handleAddSymptom}
-                className='bg-blue-500 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700'
-              >
-                Tambah Gejala
-              </button>
+            <div className='p-4'>
+              <div className='relative'>
+                <TbSearch className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl' />
+                <input
+                  type='text'
+                  placeholder='Cari gejala penyakit...'
+                  className='w-full p-4 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+
+              <h3 className='font-semibold text-lg text-black mb-2'>
+                Pilih Gejala
+              </h3>
+              <div className='border rounded-lg overflow-hidden'>
+                <ul className='divide-y divide-gray-300'>
+                  {filteredGejala.map((gejala, index) => (
+                    <li
+                      key={index}
+                      className='py-3 px-4 hover:bg-gray-100 cursor-pointer text-black'
+                      onClick={() => {
+                        handleAddSymptom(gejala);
+                        setIsAddSymptomModalOpen(false);
+                      }}
+                    >
+                      {gejala}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -178,7 +234,7 @@ export default function DiagnosisP() {
               </div>
 
               {/* Bagian Kanan*/}
-              <div className='overflow-x-auto'>
+              <div className='overflow-y-auto max-h-[50vh] '>
                 <h3 className='text-lg font-semibold text-black mb-4'>
                   Dokter yang aktif
                 </h3>
@@ -219,7 +275,22 @@ export default function DiagnosisP() {
                         aktif: false,
                       },
                       {
-                        nama: 'Candice Wu',
+                        nama: 'Michael Jordan',
+                        spesialis: 'Dokter Anak',
+                        aktif: true,
+                      },
+                      {
+                        nama: 'Sarah Connor',
+                        spesialis: 'Dokter Anak',
+                        aktif: false,
+                      },
+                      {
+                        nama: 'John Doe',
+                        spesialis: 'Dokter Anak',
+                        aktif: true,
+                      },
+                      {
+                        nama: 'Jane Smith',
                         spesialis: 'Dokter Anak',
                         aktif: true,
                       },

@@ -39,7 +39,7 @@ const dummyData = [
     tanggal: '12/12/2022',
     gambar: 'photo.jpg',
     detail: 'Lorem Ipsum dolor sit...',
-    status: 'Publish',
+    status: 'Draft',
   },
   {
     id: 5,
@@ -95,6 +95,14 @@ export default function DaftarArtikelD() {
     setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
   };
 
+  const handleEditClick = (item) => {
+    if (item.status === 'Publish') {
+      alert('Artikel sudah dipublikasikan dan tidak dapat diedit.');
+    } else {
+      window.location.href = '/UnggahArtikelD';
+    }
+  };
+
   return (
     <div className='flex min-h-screen'>
       <NavbarDoc toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
@@ -120,12 +128,14 @@ export default function DaftarArtikelD() {
         <div className='bg-white p-6 rounded-lg shadow-lg'>
           <div className='flex justify-between items-center mb-4'>
             <h2 className='text-xl font-semibold text-black'>Daftar Artikel</h2>
-            <button
-              className='bg-blue-600 text-white lg:py-2 lg:px-6 py-1 px-3 text-sm rounded-lg hover:bg-blue-700'
-              onClick={() => (window.location.href = '/UnggahArtikelD')}
-            >
-              + Buat Artikel Baru
-            </button>
+            {!isSidebarOpen && (
+              <button
+                className={`bg-blue-600 text-white lg:py-2 lg:px-6 py-1 px-1 text-sm rounded-lg hover:bg-blue-700`}
+                onClick={() => (window.location.href = '/UnggahArtikelD')}
+              >
+                + Buat Artikel Baru
+              </button>
+            )}
           </div>
 
           <div className='overflow-x-auto'>
@@ -192,11 +202,9 @@ export default function DaftarArtikelD() {
                         {item.status}
                       </span>
                     </td>
-                    <td className='px-4 py-6 text-center flex items-center justify-center space-x-4'>
+                    <td className='px-4 py-6 text-center text-lg flex  items-center justify-center space-x-4'>
                       <button
-                        onClick={() =>
-                          (window.location.href = '/UnggahArtikelD')
-                        }
+                        onClick={() => handleEditClick(item)}
                         className='text-yellow-500 hover:text-yellow-600'
                       >
                         <TbEdit />

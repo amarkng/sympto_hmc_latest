@@ -94,7 +94,9 @@ export default function NavbarDoc({ toggleSidebar, isSidebarOpen }) {
         <div
           onClick={navigateToSettings}
           className={`flex items-center p-4 hover:bg-gray-100 rounded-md text-gray-800 cursor-pointer ${
-            isActive('/doctor-setting') ? 'shadow-lg bg-gray-100' : ''
+            isActive('/doctor-setting')
+              ? 'shadow-lg bg-gray-100'
+              : 'text-gray-navbar'
           }`}
         >
           <HiOutlineCog6Tooth
@@ -121,12 +123,12 @@ function MenuLink({ Icon, label, href, isActive }) {
   return (
     <a
       onClick={() => router.push(href)}
-      className={`flex items-center p-4 hover:bg-gray-100 rounded-md text-gray-800 cursor-pointer ${
-        isActive ? 'shadow-lg bg-gray-100' : ''
+      className={`flex items-center p-4 hover:bg-gray-100 rounded-md  cursor-pointer ${
+        isActive ? 'shadow-lg bg-gray-100 text-black' : 'text-gray-navbar'
       }`}
     >
       <Icon
-        className={`text-lg ${isActive ? 'text-blue-500' : 'text-gray-700'}`}
+        className={`text-lg ${isActive ? 'text-blue-500' : 'text-gray-600'}`}
       />
       <span className='ml-4'>{label}</span>
     </a>

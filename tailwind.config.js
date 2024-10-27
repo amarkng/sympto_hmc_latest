@@ -12,6 +12,7 @@ module.exports = {
         'hapus-diag': '#989898',
         'article-blue': '#0F67FD',
         'gray-table': '#475467',
+        'gray-navbar': '#AEB2B7',
       },
     },
   },

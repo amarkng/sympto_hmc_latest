@@ -107,25 +107,25 @@ export default function HistoryDiagnosisP() {
         <table className='min-w-full table-auto'>
           <thead>
             <tr>
-              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-gray-table'>
                 No.
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                 Nama Pasien
               </th>
-              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-gray-table'>
                 ID Diagnosis
               </th>
-              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-gray-table'>
                 Tanggal
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                 Hasil Diagnosis AI
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                 Diagnosis Dokter
               </th>
-              <th className='px-4 py-4 text-sm font-semibold text-black text-center'>
+              <th className='px-4 py-4 text-sm font-semibold text-gray-table text-center'>
                 Status
               </th>
             </tr>
@@ -133,18 +133,20 @@ export default function HistoryDiagnosisP() {
           <tbody>
             {currentItems.map((item, index) => (
               <tr key={item.id} className='border-b'>
-                <td className='px-4 py-4 text-black text-center'>
+                <td className='px-4 py-4 text-gray-table text-center'>
                   {indexOfFirstItem + index + 1}
                 </td>
                 <td className='px-4 py-4 text-black'>{item.patientName}</td>
-                <td className='px-4 py-4 text-black text-center'>
+                <td className='px-4 py-4 text-gray-table text-center'>
                   {item.diagId}
                 </td>
-                <td className='px-4 py-4 text-black text-center'>
+                <td className='px-4 py-4 text-gray-table text-center'>
                   {item.date}
                 </td>
-                <td className='px-4 py-4 text-black'>{item.result}</td>
-                <td className='px-4 py-4 text-black'>{item.doctorDiagnosis}</td>
+                <td className='px-4 py-4 text-gray-table'>{item.result}</td>
+                <td className='px-4 py-4 text-gray-table'>
+                  {item.doctorDiagnosis}
+                </td>
                 <td className='px-4 py-4 text-center'>
                   {item.status === 'Verified' ? (
                     <span className='bg-green-600 text-white px-2 py-1 rounded-lg text-sm'>
@@ -155,7 +157,7 @@ export default function HistoryDiagnosisP() {
                       Ditolak
                     </span>
                   ) : (
-                    <span className=' bg-white text-black px-2 py-1 rounded-lg shadow-md text-sm'>
+                    <span className=' bg-white text-black px-2 border py-1 rounded-lg shadow-sm text-sm'>
                       Menunggu
                     </span>
                   )}
@@ -170,7 +172,7 @@ export default function HistoryDiagnosisP() {
         <button
           onClick={goToPreviousPage}
           disabled={currentPage === 1}
-          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
+          className={`py-1 px-3 text-black bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
             currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''
           }`}
         >
@@ -215,7 +217,7 @@ export default function HistoryDiagnosisP() {
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalPages}
-          className={`py-1 px-3 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
+          className={`py-1 px-3 text-black bg-white border border-gray-300 rounded-md hover:bg-gray-200 flex items-center sm:text-sm text-xs sm:py-2 sm:px-4 ${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
           }`}
         >

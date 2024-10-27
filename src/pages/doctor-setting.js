@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavbarDoc from '../app/components/NavbarDoc';
 import Image from 'next/image';
 import { FaBars } from 'react-icons/fa';
+import { LuPenLine } from 'react-icons/lu';
 
 export default function DoctorSettings() {
   const [formData, setFormData] = useState({
@@ -63,19 +64,25 @@ export default function DoctorSettings() {
               <Image
                 src='/assets/images/logoDokter.png'
                 alt='Doctor Profile'
-                className='w-20 h-20 rounded-full mr-4'
-                width={80}
-                height={80}
+                className='w-45 h-45 rounded-full'
+                width={100}
+                height={100}
               />
-              <button className=' text-blue-600'>Ubah Foto</button>
+              <button
+                className='absolute bottom-0 right-0 bg-gray-100 text-black p-2 rounded-full'
+                style={{
+                  outline: '4px solid white',
+                }}
+                aria-label='Edit Profile Picture'
+              >
+                <LuPenLine className='text-md' />
+              </button>
             </div>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6 ml-14 mr-14'>
             <div>
-              <label className='block text-sm font-medium text-black'>
-                Nama
-              </label>
+              <label className='block text-md mb-2 text-black'>Nama</label>
               <input
                 type='text'
                 name='name'
@@ -86,9 +93,7 @@ export default function DoctorSettings() {
             </div>
 
             <div>
-              <label className='block text-sm font-medium text-black'>
-                Email
-              </label>
+              <label className='block text-md mb-2 text-black'>Email</label>
               <input
                 type='email'
                 name='email'
@@ -99,9 +104,7 @@ export default function DoctorSettings() {
             </div>
 
             <div>
-              <label className='block text-sm font-medium text-black'>
-                Password
-              </label>
+              <label className='block text-md mb-2 text-black'>Password</label>
               <input
                 type='password'
                 name='password'
@@ -112,9 +115,7 @@ export default function DoctorSettings() {
             </div>
 
             <div>
-              <label className='block text-sm font-medium text-black'>
-                No. Telp
-              </label>
+              <label className='block text-md mb-2 text-black'>No. Telp</label>
               <input
                 type='tel'
                 name='phone'
@@ -125,7 +126,7 @@ export default function DoctorSettings() {
             </div>
 
             <div>
-              <label className='block text-sm font-medium text-black'>
+              <label className='block text-md mb-2 text-black'>
                 Jenis Kelamin
               </label>
               <select
@@ -140,7 +141,7 @@ export default function DoctorSettings() {
             </div>
 
             <div>
-              <label className='block text-sm font-medium text-black'>
+              <label className='block text-md mb-2 text-black'>
                 Tanggal Lahir
               </label>
               <input
@@ -153,9 +154,7 @@ export default function DoctorSettings() {
             </div>
 
             <div className='md:col-span-2'>
-              <label className='block text-sm font-medium text-black'>
-                Alamat
-              </label>
+              <label className='block text-md mb-2 text-black'>Alamat</label>
               <input
                 type='text'
                 name='address'

@@ -24,7 +24,7 @@ const generateDummyData = (numPatients) => {
       id: i + 1,
       name: names[i % names.length],
       specialty: specialties[i % specialties.length],
-      diagId: 1000 + i + 1,
+      diagId: 21 + i + 1,
       status: i % 2 === 0 ? 'Join Meeting' : 'No Meeting Scheduled',
     });
   }
@@ -105,24 +105,24 @@ export default function HistoryDiagnosis() {
 
       <div className='overflow-x-auto'>
         <table className='min-w-full table-auto'>
-          <thead>
+          <thead className='bg-gray-50'>
             <tr>
-              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                 No.
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                 Nama Dokter
               </th>
-              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-gray-table'>
                 ID Diagnosis
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                 Hasil Diagnosis AI
               </th>
-              <th className='px-4 py-4 text-left text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-left text-sm font-semibold text-gray-table'>
                 Hasil Konsultasi
               </th>
-              <th className='px-4 py-4 text-center text-sm font-semibold text-black'>
+              <th className='px-4 py-4 text-center text-sm font-semibold text-gray-table'>
                 Status
               </th>
             </tr>
@@ -130,7 +130,7 @@ export default function HistoryDiagnosis() {
           <tbody>
             {currentItems.map((entry, index) => (
               <tr key={entry.id} className='border-b'>
-                <td className='px-4 py-6 text-black text-center'>
+                <td className='px-4 py-6 text-gray-table text-left'>
                   {indexOfFirstItem + index + 1}
                 </td>
                 <td className='px-4 py-6 text-black'>
@@ -143,30 +143,31 @@ export default function HistoryDiagnosis() {
                       height={48}
                     />
                     <div className='ml-3'>
-                      <p className='text-sm font-medium'>{entry.name}</p>
-                      <p className='text-xs text-gray-500'>{entry.specialty}</p>
+                      <p className='text-md font-medium'>{entry.name}</p>
+                      <p className='text-sm text-gray-500'>{entry.specialty}</p>
                     </div>
                   </div>
                 </td>
-                <td className='px-4 py-6 text-black text-center'>
+                <td className='px-4 py-6 text-gray-table text-center'>
                   {entry.diagId}
                 </td>
-                <td className='px-4 py-6 text-black'>
+                <td className='px-4 py-6 text-gray-table'>
                   Lorem Ipsum dolor sit..
                 </td>
-                <td className='px-4 py-6 text-black'>
+                <td className='px-4 py-6 text-gray-table'>
                   Lorem Ipsum dolor sit..
                 </td>
                 <td className='px-4 py-6 text-center'>
                   {entry.status === 'Join Meeting' ? (
                     <button
                       onClick={openVideoCall}
-                      className='bg-blue-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700'
+                      className='bg-blue-500 text-white px-4 py-1 rounded-lg text-sm hover:bg-blue-700'
                     >
-                      <FaVideo className='inline-block mr-2' /> Join Meeting
+                      <FaVideo className='inline-block mr-2 text-sm' /> Join
+                      Meeting
                     </button>
                   ) : (
-                    <span className='text-gray-500 text-sm'>
+                    <span className='text-black text-sm shadow-sm lg:border px-4 py-1 lg:bg-white rounded-lg'>
                       No Meeting Scheduled
                     </span>
                   )}
@@ -237,7 +238,7 @@ export default function HistoryDiagnosis() {
 
       {isVideoOpen && (
         <div className='fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50'>
-          <div className='bg-white w-[90%] max-w-4xl rounded-lg shadow-lg p-6'>
+          <div className='bg-white w-[90%] max-w-4xl rounded-lg shadow-lg'>
             <div className='bg-blue-600 text-white py-4 px-6 rounded-t-lg flex justify-between items-center'>
               <h2 className='text-xl font-semibold'>Join Meeting</h2>
               <button onClick={() => setIsVideoOpen(false)}>Close</button>

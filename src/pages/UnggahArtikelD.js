@@ -48,13 +48,13 @@ export default function UnggahArtikelD() {
           </button>
         </div>
 
-        <div className='flex-1 p-6'>
+        <div className='flex-1 '>
           <h1 className='text-3xl font-bold text-black mb-6'>Unggah Artikel</h1>
 
           <div className='bg-white p-6 rounded-lg shadow-md'>
             <form className='space-y-6'>
               <div>
-                <label className='block text-sm font-medium text-black mb-2'>
+                <label className='block text-md font-medium text-black mb-2'>
                   Judul Artikel
                 </label>
                 <input
@@ -68,7 +68,7 @@ export default function UnggahArtikelD() {
 
               <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                 <div>
-                  <label className='block text-sm font-medium text-black mb-2'>
+                  <label className='block text-md font-medium text-black mb-2'>
                     Kategori
                   </label>
                   <input
@@ -81,7 +81,7 @@ export default function UnggahArtikelD() {
                 </div>
 
                 <div>
-                  <label className='block text-sm font-medium text-black mb-2'>
+                  <label className='block text-md font-medium text-black mb-2'>
                     Tanggal Rilis
                   </label>
                   <input
@@ -94,7 +94,7 @@ export default function UnggahArtikelD() {
               </div>
 
               <div>
-                <label className='block text-sm font-medium text-black mb-2'>
+                <label className='block text-md font-medium text-black mb-2'>
                   Upload Gambar
                 </label>
                 <div className='flex flex-col items-start w-full'>
@@ -104,7 +104,7 @@ export default function UnggahArtikelD() {
                     className='file:py-2 file:px-4 w-full sm:w-auto file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-black hover:file:bg-gray-200'
                   />
                   {!selectedFile && (
-                    <span className='text-sm text-gray-500 mt-2 text-left'>
+                    <span className='text-sm text-black mt-2 text-left'>
                       Tidak ada file yang dipilih.
                     </span>
                   )}
@@ -112,7 +112,7 @@ export default function UnggahArtikelD() {
               </div>
 
               <div>
-                <label className='block text-sm font-medium text-black mb-2'>
+                <label className='block text-md font-medium text-black mb-2'>
                   Detail Artikel
                 </label>
                 <textarea
@@ -128,13 +128,14 @@ export default function UnggahArtikelD() {
                 <button
                   type='button'
                   onClick={openModal}
-                  className='bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition duration-200'
+                  className='bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200'
                 >
                   Unggah
                 </button>
                 <button
                   type='button'
-                  className='border border-gray-400 text-gray-500 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-200'
+                  onClick={() => (window.location.href = '/DaftarArtikelD')}
+                  className='border border-gray-400 text-gray-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-200'
                 >
                   Draf
                 </button>

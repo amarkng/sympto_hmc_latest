@@ -36,7 +36,7 @@ export default function Article() {
       <div className='absolute bottom-[-150px] left-[0%] transform -translate-x-1/2 w-[720px] h-[720px] bg-blue-900 rounded-full opacity-50'></div>
       <div className='absolute top-[-300px] right-[-300px] w-[720px] h-[720px] bg-blue-800 rounded-full opacity-50'></div>
 
-      <div className='max-w-7xl  mx-auto relative z-10'>
+      <div className='max-w-7xl  mx-auto relative z-10 '>
         <h2 className='text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-8 text-center'>
           Artikel Terbaru
         </h2>
