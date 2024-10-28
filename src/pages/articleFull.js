@@ -12,8 +12,8 @@ export default function ArticleFull() {
 
   useEffect(() => {
     const updateArticlesPerPage = () => {
-      if (window.innerWidth < 640) {
-        setArticlesPerPage(6);
+      if (window.innerWidth <= 800) {
+        setArticlesPerPage(8);
       } else {
         setArticlesPerPage(12);
       }
