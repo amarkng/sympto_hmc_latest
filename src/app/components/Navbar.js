@@ -15,7 +15,7 @@ export default function Navbar() {
           Symptosense
         </Link>
 
-        <div className='hidden md:flex space-x-4 sm:space-x-6 lg:space-x-8'>
+        <div className='hidden lg:flex space-x-4 sm:space-x-6 lg:space-x-8'>
           <Link
             href='/#about'
             className={`text-gray-800 hover:text-blue-600 transition ${
@@ -50,7 +50,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className='hidden md:flex space-x-3 sm:space-x-4 items-center'>
+        <div className='hidden lg:flex space-x-3 sm:space-x-4 items-center'>
           <Link href='/SignUp'>
             <button className='min-w-[100px] sm:min-w-[120px] px-3 py-2 sm:px-4 sm:py-2 border-2 border-blue-600 text-blue-600 font-semibold rounded-md hover:bg-blue-600 hover:text-white transition'>
               Registrasi
@@ -65,7 +65,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile */}
-        <div className='md:hidden'>
+        <div className='lg:hidden'>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className='text-gray-800 focus:outline-none'
@@ -76,7 +76,7 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className='md:hidden bg-white px-6 py-4'>
+        <div className='lg:hidden bg-white px-6 py-4'>
           <Link
             href='/#about'
             className={`block text-gray-800 py-2 hover:text-blue-600 transition ${
