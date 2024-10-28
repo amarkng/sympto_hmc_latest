@@ -23,7 +23,7 @@ export default function SignIn() {
         query: { role: 'patient' },
       });
     } else {
-      alert('Please select a role before logging in.');
+      alert('Password Salah');
     }
   };
 
