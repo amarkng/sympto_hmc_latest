@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavbarPatient from '../app/components/NavbarPatient';
 import Image from 'next/image';
 import { FaBars } from 'react-icons/fa';
+import { LuPenLine } from 'react-icons/lu';
 
 export default function PatientSettings() {
   const [formData, setFormData] = useState({
@@ -63,7 +64,7 @@ export default function PatientSettings() {
             Pengaturan
           </h1>
 
-          <div className='flex justify-center mb-6'>
+          {/* <div className='flex justify-center mb-6'>
             <div className='relative'>
               <Image
                 src='/assets/images/placeholder1.jpg'
@@ -73,6 +74,26 @@ export default function PatientSettings() {
                 height={80}
               />
               <button className='text-blue-600 text-'>Ubah Foto</button>
+            </div>
+          </div> */}
+          <div className='flex justify-center mb-6'>
+            <div className='relative'>
+              <Image
+                src='/assets/images/logoPasien.png'
+                alt='Doctor Profile'
+                className='w-45 h-45 rounded-full'
+                width={100}
+                height={100}
+              />
+              <button
+                className='absolute bottom-0 right-0 bg-gray-100 text-black p-2 rounded-full'
+                style={{
+                  outline: '4px solid white',
+                }}
+                aria-label='Edit Profile Picture'
+              >
+                <LuPenLine className='text-md' />
+              </button>
             </div>
           </div>
 
