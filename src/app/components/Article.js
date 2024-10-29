@@ -61,7 +61,7 @@ export default function Article() {
   }, []);
 
   return (
-    <section className='relative bg-article-blue py-16 lg:py-32 px-6 overflow-hidden'>
+    <section className='relative bg-article-blue py-16 lg:py-20 px-6 overflow-hidden'>
       <div className='absolute bottom-[-150px] left-[0%] transform -translate-x-1/2 w-[720px] h-[720px] bg-blue-900 rounded-full opacity-50'></div>
       <div className='absolute top-[-300px] right-[-300px] w-[720px] h-[720px] bg-blue-800 rounded-full opacity-50'></div>
 
