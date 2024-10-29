@@ -3,6 +3,7 @@ import NavbarDoc from '../app/components/NavbarDoc';
 import Image from 'next/image';
 import { FaBars } from 'react-icons/fa';
 import { LuPenLine } from 'react-icons/lu';
+import { TbEdit } from 'react-icons/tb';
 
 export default function DoctorSettings() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ export default function DoctorSettings() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -24,6 +26,37 @@ export default function DoctorSettings() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handlePasswordModal = () => {
+    setShowPasswordModal(true);
+  };
+  const [passwordInput, setPasswordInput] = useState({
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+  });
+  const openPasswordModal = () => setShowPasswordModal(true);
+  const closePasswordModal = () => setShowPasswordModal(false);
+  const handlePasswordChange = (e) => {
+    setPasswordInput({ ...passwordInput, [e.target.name]: e.target.value });
+  };
+
+  const handlePasswordSubmit = () => {
+    if (
+      passwordInput.oldPassword === '' ||
+      passwordInput.newPassword === '' ||
+      passwordInput.confirmPassword === ''
+    ) {
+      alert('Password tidak boleh kosong');
+    } else if (passwordInput.oldPassword !== 'Dokter') {
+      alert('Maaf password lama salah');
+    } else if (passwordInput.newPassword !== passwordInput.confirmPassword) {
+      alert('Password baru dan konfirmasi password tidak sama');
+    } else {
+      alert('Password Berhasil diubah');
+      closePasswordModal();
+    }
   };
 
   const handleSave = () => {
@@ -44,7 +77,8 @@ export default function DoctorSettings() {
       <div
         className={`flex-1 p-6 bg-gray-50 transition-all duration-300 ${
           isSidebarOpen ? 'ml-64' : 'ml-0'
-        }`}
+        } overflow-y-auto`}
+        style={{ maxHeight: '100vh' }}
       >
         {/* Hamburger Mobile */}
         <div className='md:hidden flex justify-between items-center mb-6'>
@@ -55,7 +89,7 @@ export default function DoctorSettings() {
         </div>
 
         <div className='bg-white p-7 rounded-lg shadow-lg w-full max-w-6x2 min-h-[90vh] mx-auto'>
-          <h1 className='text-3xl font-bold mb-6 text-black md:text-left ml-14 sm:text-center'>
+          <h1 className='text-3xl font-bold mb-6 text-black text-center md:text-left'>
             Pengaturan
           </h1>
 
@@ -68,19 +102,20 @@ export default function DoctorSettings() {
                 width={100}
                 height={100}
               />
-              <button
-                className='absolute bottom-0 right-0 bg-gray-100 text-black p-2 rounded-full'
-                style={{
-                  outline: '4px solid white',
-                }}
-                aria-label='Edit Profile Picture'
-              >
-                <LuPenLine className='text-md' />
-              </button>
+
+              {!isSidebarOpen && (
+                <button
+                  className='absolute bottom-0 right-0 bg-gray-100 text-black p-2 rounded-full'
+                  style={{ outline: '4px solid white' }}
+                  aria-label='Edit Profile Picture'
+                >
+                  <LuPenLine className='text-sm' />
+                </button>
+              )}
             </div>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 ml-14 mr-14'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mx-4'>
             <div>
               <label className='block text-md mb-2 text-black'>Nama</label>
               <input
@@ -103,15 +138,28 @@ export default function DoctorSettings() {
               />
             </div>
 
-            <div>
-              <label className='block text-md mb-2 text-black'>Password</label>
-              <input
-                type='password'
-                name='password'
-                value={formData.password}
-                onChange={handleChange}
-                className='w-full p-3 border border-gray-300 rounded-lg text-black'
-              />
+            <div className='relative'>
+              <label className='block text-sm font-medium text-black'>
+                Ubah Password
+              </label>
+              <div className='relative'>
+                <input
+                  type='password'
+                  name='password'
+                  value={formData.password}
+                  onChange={handleChange}
+                  className='w-full p-3 pr-10 border border-gray-300 rounded-lg text-black'
+                />
+                {!isSidebarOpen && (
+                  <button
+                    onClick={handlePasswordModal}
+                    className='absolute inset-y-0 right-3 flex items-center'
+                    aria-label='Edit Password'
+                  >
+                    <TbEdit className='text-xl' />
+                  </button>
+                )}
+              </div>
             </div>
 
             <div>
@@ -168,13 +216,13 @@ export default function DoctorSettings() {
           <div className='flex flex-col items-center justify-center mt-6 space-y-4 md:flex-row md:space-y-0 md:space-x-4'>
             <button
               onClick={handleSave}
-              className='px-11 py-3 bg-blue-600 font-semibold hover:bg-blue-700 text-white rounded-lg '
+              className='w-full max-w-[200px] px-4 py-3 bg-blue-600 font-semibold text-white rounded-lg text-center transition-all truncate'
             >
               Simpan
             </button>
             <button
               onClick={handleCancel}
-              className='px-10 py-3 border font-semibold border-gray-400 text-gray-400 hover:bg-gray-300 rounded-lg'
+              className='w-full max-w-[200px] px-4 py-3 border font-semibold border-gray-400 text-gray-400 hover:bg-gray-300 rounded-lg text-center transition-all truncate'
             >
               Batalkan
             </button>
@@ -196,6 +244,70 @@ export default function DoctorSettings() {
             >
               OK
             </button>
+          </div>
+        </div>
+      )}
+      {showPasswordModal && (
+        <div className='fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50'>
+          <div className='bg-white w-[100%] max-w-md  rounded-xl shadow-lg'>
+            <div className='relative bg-article-blue p-4 rounded-t-xl flex justify-center items-center'>
+              <h2 className='text-lg  text-white'>Ubah Password</h2>
+              <button
+                onClick={closePasswordModal}
+                className='absolute right-4 top-4 w-8 h-8 bg-blue-600 border-2 border-white rounded-full flex items-center justify-center text-white text-xl hover:bg-blue-700'
+              >
+                &times;
+              </button>
+            </div>
+
+            <div className='p-6 space-y-6'>
+              <div className='mb-6'>
+                <label className='block text-sm font-medium text-black'>
+                  Password Lama
+                </label>
+                <input
+                  type='password'
+                  name='oldPassword'
+                  value={passwordInput.oldPassword}
+                  onChange={handlePasswordChange}
+                  placeholder='Masukkan password lama'
+                  className='w-full p-3 border border-gray-300 rounded-lg text-black'
+                />
+              </div>
+              <div className='mb-6'>
+                <label className='block text-sm font-medium text-black'>
+                  Password Baru
+                </label>
+                <input
+                  type='password'
+                  name='newPassword'
+                  value={passwordInput.newPassword}
+                  onChange={handlePasswordChange}
+                  placeholder='Masukkan password baru'
+                  className='w-full p-3 border border-gray-300 rounded-lg text-black'
+                />
+              </div>
+              <div>
+                <label className='block text-sm font-medium text-black'>
+                  Konfirmasi Password Baru
+                </label>
+                <input
+                  type='password'
+                  name='confirmPassword'
+                  value={passwordInput.confirmPassword}
+                  onChange={handlePasswordChange}
+                  placeholder='Masukkan password baru'
+                  className='w-full p-3 border border-gray-300 rounded-lg text-black'
+                />
+              </div>
+
+              <button
+                onClick={handlePasswordSubmit}
+                className='w-32 py-2 bg-article-blue text-white font-semibold rounded-lg mx-auto block'
+              >
+                Ubah
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { FaBell } from 'react-icons/fa';
 import { LuClipboardCheck } from 'react-icons/lu';
 import { PiChatsLight } from 'react-icons/pi';
 import { HiOutlineCog6Tooth, HiOutlineDocumentArrowUp } from 'react-icons/hi2';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { RxDashboard } from 'react-icons/rx';
 import { RiReceiptLine } from 'react-icons/ri';
-
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from './alert-dialog';
 export default function NavbarDoc({ toggleSidebar, isSidebarOpen }) {
   const router = useRouter();
   const isActive = (path) => router.pathname === path;
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
   const handleLogout = () => {
+    setDialogOpen(false);
     router.push('/');
   };
 
@@ -50,11 +58,6 @@ export default function NavbarDoc({ toggleSidebar, isSidebarOpen }) {
             <p className='font-bold text-md text-black'>Arman Maul</p>
           </div>
         </div>
-
-        {/* <div className='relative'>
-          <FaBell className='text-xl text-gray-700' />
-          <span className='absolute top-0 right-0 block h-2 w-2 rounded-full bg-orange-500'></span>
-        </div> */}
       </div>
 
       <nav className='flex flex-col space-y-2 flex-1 '>
@@ -106,12 +109,40 @@ export default function NavbarDoc({ toggleSidebar, isSidebarOpen }) {
           />
           <span className='ml-2'>Pengaturan</span>
         </div>
-        <button
-          onClick={handleLogout}
-          className='flex items-center text-red-600 w-full hover:bg-gray-100 p-4 rounded-md'
-        >
-          <HiOutlineLogout className='mr-2 rotate-180	text-lg' /> Logout
-        </button>
+        <AlertDialog open={isDialogOpen} onOpenChange={setDialogOpen}>
+          <AlertDialogTrigger asChild>
+            <button
+              onClick={() => setDialogOpen(true)}
+              className='flex items-center text-red-600 w-full hover:bg-gray-100 p-4 rounded-md'
+            >
+              <HiOutlineLogout className='mr-2 rotate-180 text-lg' /> Logout
+            </button>
+          </AlertDialogTrigger>
+          <AlertDialogContent className='max-w-md p-12 bg-white rounded-xl shadow-lg border border-gray-200'>
+            <h2 className='text-xl font-bold mb-2 text-center text-black'>
+              Logout
+            </h2>
+            <p className='text-gray-600 text-center mb-6'>
+              Anda akan keluar dari akun Anda.
+              <br /> Apakah Anda ingin melanjutkan?
+            </p>
+            <div className='flex flex-col space-y-3'>
+              <AlertDialogCancel asChild>
+                <button className='w-full py-6 rounded-full bg-gray-300 hover:bg-gray-400 text-black font-semibold text-center'>
+                  No
+                </button>
+              </AlertDialogCancel>
+              <AlertDialogAction asChild>
+                <button
+                  onClick={handleLogout}
+                  className='w-full py-6 rounded-full bg-merah-yes hover:bg-red-700 text-white font-semibold text-center'
+                >
+                  Yes
+                </button>
+              </AlertDialogAction>
+            </div>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </aside>
   );

@@ -60,7 +60,8 @@ export default function DiagnosisP() {
       <div
         className={`flex-1 p-6 bg-gray-50 transition-all duration-300 overflow-auto ${
           isSidebarOpen ? 'ml-64' : 'ml-0'
-        }`}
+        } overflow-y-auto`}
+        style={{ maxHeight: '100vh' }}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
           <h1 className='text-2xl font-bold text-blue-600'>SymptoSense</h1>
@@ -150,9 +151,9 @@ export default function DiagnosisP() {
               </h2>
               <button
                 onClick={() => setIsAddSymptomModalOpen(false)}
-                className='absolute right-4 text-white hover:text-gray-200'
+                className='absolute right-4 top-4 w-8 h-8 bg-blue-600 border-2 border-white rounded-full flex items-center justify-center text-white text-xl hover:bg-blue-700'
               >
-                ✕
+                &times;
               </button>
             </div>
 
@@ -191,6 +192,7 @@ export default function DiagnosisP() {
           </div>
         </div>
       )}
+      {/* Modal Hasil Diagnosis */}
       {isResultModalOpen && (
         <div className='fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50'>
           <div className='bg-white rounded-xl shadow-lg w-11/12 sm:w-4/6 md:w-3/5 lg:w-3/5 xl:w-2/3 max-h-screen overflow-y-auto'>

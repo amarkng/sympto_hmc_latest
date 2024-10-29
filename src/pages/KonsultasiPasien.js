@@ -20,6 +20,7 @@ export default function KonsultasiPasien() {
         className={`flex-1 p-6 bg-gray-50 transition-all duration-300 ${
           isSidebarOpen ? 'ml-64' : 'ml-0'
         } overflow-y-auto`}
+        style={{ maxHeight: '100vh' }}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
           <h1 className='text-2xl font-bold text-blue-600'>Konsultasi</h1>

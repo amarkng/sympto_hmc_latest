@@ -121,9 +121,9 @@ export default function Diagnosis() {
               </h2>
               <button
                 onClick={() => setIsAddSymptomModalOpen(false)}
-                className='absolute right-4 text-white hover:text-gray-200'
+                className='absolute right-4 top-4 w-8 h-8 bg-blue-600 border-2 border-white rounded-full flex items-center justify-center text-white text-xl hover:bg-blue-700'
               >
-                ✕
+                &times;
               </button>
             </div>
 

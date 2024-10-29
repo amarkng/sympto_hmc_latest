@@ -96,11 +96,7 @@ export default function DaftarArtikelD() {
   };
 
   const handleEditClick = (item) => {
-    if (item.status === 'Publish') {
-      alert('Artikel sudah dipublikasikan dan tidak dapat diedit.');
-    } else {
-      window.location.href = '/UnggahArtikelD';
-    }
+    window.location.href = '/EditArtikelD';
   };
 
   return (
@@ -111,6 +107,7 @@ export default function DaftarArtikelD() {
         className={`flex-1 p-6 bg-gray-50 transition-all duration-300 ${
           isSidebarOpen ? 'ml-64' : 'ml-0'
         } overflow-y-auto`}
+        style={{ maxHeight: '100vh' }}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
           <h1 className='text-2xl font-bold text-blue-600'>Daftar Artikel</h1>
@@ -224,16 +221,16 @@ export default function DaftarArtikelD() {
           {isModalOpen && (
             <div className='fixed inset-0 flex justify-center items-center z-50'>
               <div className='bg-white p-8 rounded-lg shadow-lg max-w-sm w-full text-center'>
-                <h2 className='text-lg font-bold mb-4 text-black'>
+                <h2 className='text-xl font-semibold mb-4 text-black'>
                   Hapus Artikel
                 </h2>
                 <p className='text-gray-700 mb-6 text-center'>
                   Apakah anda yakin akan menghapus artikel ini?
                 </p>
-                <div className='flex justify-between gap-4'>
+                <div className='flex flex-col gap-4'>
                   <button
                     onClick={closeModal}
-                    className='bg-gray-300 text-gray-700 px-6 py-2 rounded-full w-full hover:bg-gray-400 transition duration-200'
+                    className='bg-gray-300 text-gray-700 px-6 py-3 rounded-full  hover:bg-gray-400 transition duration-200'
                   >
                     No
                   </button>
@@ -242,7 +239,7 @@ export default function DaftarArtikelD() {
                       console.log('Deleting item', selectedItem);
                       closeModal();
                     }}
-                    className='bg-red-600 text-white px-6 py-2 rounded-full w-full hover:bg-red-700 transition duration-200'
+                    className='bg-merah-yes text-white px-6 py-3 rounded-full  hover:bg-red-700 transition duration-200'
                   >
                     Yes
                   </button>

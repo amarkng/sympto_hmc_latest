@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavbarDoc from '../app/components/NavbarDoc';
 import { FaBars } from 'react-icons/fa';
 
-export default function UnggahArtikelD() {
+export default function EditArtikelD() {
   const [judul, setJudul] = useState('The Golden Sands of Florida');
   const [kategori, setKategori] = useState('Health');
   const [tanggalRilis, setTanggalRilis] = useState('2002-06-23');
@@ -50,7 +50,7 @@ export default function UnggahArtikelD() {
         </div>
 
         <div className='flex-1 '>
-          <h1 className='text-3xl font-bold text-black mb-6'>Unggah Artikel</h1>
+          <h1 className='text-3xl font-bold text-black mb-6'>Edit Artikel</h1>
 
           <div className='bg-white p-6 rounded-lg shadow-md'>
             <form className='space-y-6'>
@@ -147,7 +147,7 @@ export default function UnggahArtikelD() {
 
         {isModalOpen && (
           <div className='fixed inset-0 flex justify-center items-center'>
-            <div className='bg-white p-8 rounded-lg shadow-lg max-w-sm w-full text-center'>
+            <div className='bg-white p-8 rounded-lg shadow-lg max-w-xs w-full text-center'>
               <h2 className='text-xl font-semibold mb-4 text-black'>
                 Unggah Artikel
               </h2>
