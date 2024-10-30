@@ -6,15 +6,16 @@ import { LuPenLine } from 'react-icons/lu';
 import { TbEdit } from 'react-icons/tb';
 
 export default function DoctorSettings() {
-  const [formData, setFormData] = useState({
+  const initialData = {
     name: 'Arman Maul',
     email: 'Armanmaul@gmail.com',
     password: '************',
     phone: '+62 8211234565',
     gender: 'Laki-Laki',
-    birthDate: '23/06/2002',
+    birthDate: '2002-06-23',
     address: 'Jl. Bojongsoang No.21',
-  });
+  };
+  const [formData, setFormData] = useState(initialData);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -60,13 +61,22 @@ export default function DoctorSettings() {
   };
 
   const handleSave = () => {
-    console.log('Pengaturan disimpan', formData);
-    setShowModal(true);
+    if (isFormComplete()) {
+      console.log('Pengaturan disimpan', formData);
+      setShowModal(true);
+    } else {
+      alert('Harap isi semua kolom sebelum menyimpan.');
+    }
+  };
+
+  const isFormComplete = () => {
+    return Object.values(formData).every((value) => value !== '');
   };
 
   const closeModal = () => setShowModal(false);
 
   const handleCancel = () => {
+    setFormData(initialData);
     console.log('Perubahan dibatalkan');
   };
 

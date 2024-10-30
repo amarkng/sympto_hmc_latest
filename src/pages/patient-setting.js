@@ -6,17 +6,18 @@ import { LuPenLine } from 'react-icons/lu';
 import { TbEdit } from 'react-icons/tb';
 
 export default function PatientSettings() {
-  const [formData, setFormData] = useState({
+  const initialData = {
     name: 'Lala Aisyah',
     email: 'LalaAisyah@gmail.com',
     password: '************',
     phone: '+62 8123456789',
     gender: 'Perempuan',
-    birthDate: '01/01/1990',
+    birthDate: '2002-06-23',
     address: 'Jl. Sukabirus No.21',
     weight: '146 kg',
     height: '165 cm',
-  });
+  };
+  const [formData, setFormData] = useState(initialData);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -62,13 +63,22 @@ export default function PatientSettings() {
   };
 
   const handleSave = () => {
-    console.log('Pengaturan disimpan', formData);
-    setShowModal(true);
+    if (isFormComplete()) {
+      console.log('Pengaturan disimpan', formData);
+      setShowModal(true);
+    } else {
+      alert('Harap isi semua kolom sebelum menyimpan.');
+    }
+  };
+
+  const isFormComplete = () => {
+    return Object.values(formData).every((value) => value !== '');
   };
 
   const closeModal = () => setShowModal(false);
 
   const handleCancel = () => {
+    setFormData(initialData);
     console.log('Perubahan dibatalkan');
   };
 
