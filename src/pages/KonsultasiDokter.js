@@ -17,7 +17,7 @@ const generateDummyData = (numPatients) => {
     dummyPatients.push({
       id: i + 1,
       name: names[i % names.length],
-      diagId: 1000 + i + 1,
+      diagId: 21 + i + 1,
       aiResult: 'Lorem Ipsum dolor sit..',
       doctorResult: 'Lorem Ipsum dolor sit..',
       status: i % 2 === 0 ? 'Start Meeting' : 'Completed',
