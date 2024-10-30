@@ -139,7 +139,7 @@ export default function DaftarArtikelD() {
 
       return updatedData;
     });
-
+    alert('Artikel berhasil dihapus!');
     closeModal();
   };
 
