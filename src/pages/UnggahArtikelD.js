@@ -28,8 +28,19 @@ export default function UnggahArtikelD() {
   };
 
   const handleUnggah = () => {
-    alert('Artikel berhasil diunggah!');
-    closeModal();
+    if (!judul) {
+      alert('Harap isi judul artikel sebelum mengunggah.');
+      closeModal();
+    } else if (!kategori) {
+      alert('Harap isi kategori artikel sebelum mengunggah.');
+      closeModal();
+    } else if (!detailArtikel) {
+      alert('Harap isi detail artikel sebelum mengunggah.');
+      closeModal();
+    } else {
+      alert('Artikel berhasil diunggah!');
+      closeModal();
+    }
   };
 
   const handleFileChange = (event) => {
