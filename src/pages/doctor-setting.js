@@ -149,7 +149,7 @@ export default function DoctorSettings() {
             </div>
 
             <div className='relative'>
-              <label className='block text-md font-medium text-black'>
+              <label className='block text-md font-medium mb-2 text-black'>
                 Ubah Password
               </label>
               <div className='relative'>
