@@ -94,7 +94,7 @@ export default function VerifikasiDiagnosis() {
     {
       id: 6,
       nama: 'Lana Steiner',
-      diagnosisId: 24,
+      diagnosisId: 27,
       hasilDokter: 'Lorem Ipsum dolor sit..',
       keluhan: [
         'Batuk berdahak',
@@ -107,7 +107,7 @@ export default function VerifikasiDiagnosis() {
     {
       id: 7,
       nama: 'Demi Wilkinson',
-      diagnosisId: 25,
+      diagnosisId: 28,
       hasilDokter: 'Lorem Ipsum dolor sit..',
       keluhan: [
         'Demam tinggi',
@@ -120,7 +120,7 @@ export default function VerifikasiDiagnosis() {
     {
       id: 8,
       nama: 'Candice Wu',
-      diagnosisId: 26,
+      diagnosisId: 29,
       hasilDokter: 'Lorem Ipsum dolor sit..',
       keluhan: [
         'Demam tinggi',
@@ -133,7 +133,7 @@ export default function VerifikasiDiagnosis() {
     {
       id: 9,
       nama: 'Candice Wu',
-      diagnosisId: 26,
+      diagnosisId: 30,
       hasilDokter: 'Lorem Ipsum dolor sit..',
       keluhan: [
         'Demam tinggi',
@@ -146,7 +146,7 @@ export default function VerifikasiDiagnosis() {
     {
       id: 10,
       nama: 'Candice Wu',
-      diagnosisId: 26,
+      diagnosisId: 31,
       hasilDokter: 'Lorem Ipsum dolor sit..',
       keluhan: [
         'Demam tinggi',
@@ -324,15 +324,13 @@ export default function VerifikasiDiagnosis() {
         {isModalOpen && (
           <div className='fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-50'>
             <div className='bg-white w-11/12 sm:w-4/6 md:w-3/5 lg:w-2/4 max-h-[80vh] rounded-xl shadow-lg overflow-y-auto'>
-              <div className='relative bg-blue-600 rounded-t-xl p-4 flex justify-center items-center'>
-                <h2 className='text-lg sm:text-xl font-bold text-white'>
-                  Detail Pasien
-                </h2>
+              <div className='relative bg-blue-600 p-4 rounded-t-xl flex justify-center items-center'>
+                <h2 className='text-lg sm:text-xl text-white'>Detail Pasien</h2>
                 <button
-                  onClick={() => toggleModal(null)}
-                  className='absolute right-4 text-white hover:text-gray-200'
+                  onClick={() => setIsModalOpen(false)}
+                  className='absolute right-4 top-4 w-8 h-8 bg-blue-600 border-2 border-white rounded-full flex items-center justify-center text-white text-xl hover:bg-blue-700'
                 >
-                  <FaTimes />
+                  &times;
                 </button>
               </div>
 
@@ -414,7 +412,7 @@ export default function VerifikasiDiagnosis() {
                 <div className='flex justify-center mt-6'>
                   <button
                     onClick={handleSubmit}
-                    className='bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-700 text-base'
+                    className='bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 text-base'
                   >
                     Submit
                   </button>
