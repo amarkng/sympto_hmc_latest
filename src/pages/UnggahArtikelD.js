@@ -5,13 +5,18 @@ import { FaBars } from 'react-icons/fa';
 export default function UnggahArtikelD() {
   const [judul, setJudul] = useState('');
   const [kategori, setKategori] = useState('');
-  const [tanggalRilis, setTanggalRilis] = useState('');
   const [detailArtikel, setDetailArtikel] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  const [tanggalRilis, setTanggalRilis] = useState(() => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
