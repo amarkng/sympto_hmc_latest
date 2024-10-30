@@ -59,6 +59,33 @@ const dummyData = [
     detail: 'Lorem Ipsum dolor sit...',
     status: 'Publish',
   },
+  {
+    id: 7,
+    judul: 'The Golden Sands of Florida',
+    kategori: 'Health',
+    tanggal: '12/12/2022',
+    gambar: 'photo.jpg',
+    detail: 'Lorem Ipsum dolor sit...',
+    status: 'Draft',
+  },
+  {
+    id: 8,
+    judul: 'The Golden Sands of Florida',
+    kategori: 'Health',
+    tanggal: '12/12/2022',
+    gambar: 'photo.jpg',
+    detail: 'Lorem Ipsum dolor sit...',
+    status: 'Draft',
+  },
+  {
+    id: 9,
+    judul: 'The Golden Sands of Florida',
+    kategori: 'Health',
+    tanggal: '12/12/2022',
+    gambar: 'photo.jpg',
+    detail: 'Lorem Ipsum dolor sit...',
+    status: 'Publish',
+  },
 ];
 
 export default function DaftarArtikelD() {
@@ -80,12 +107,13 @@ export default function DaftarArtikelD() {
     setIsModalOpen(false);
   };
 
-  const currentItems = dummyData.slice(
+  const [data, setData] = useState(dummyData);
+  const currentItems = data.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  const totalPages = Math.ceil(dummyData.length / itemsPerPage);
+  const totalPages = Math.ceil(data.length / itemsPerPage);
 
   const goToPreviousPage = () => {
     setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
@@ -97,6 +125,22 @@ export default function DaftarArtikelD() {
 
   const handleEditClick = (item) => {
     window.location.href = '/EditArtikelD';
+  };
+
+  const handleDelete = (id) => {
+    setData((prevData) => {
+      const updatedData = prevData.filter((item) => item.id !== id);
+      if (
+        (currentPage - 1) * itemsPerPage >= updatedData.length &&
+        currentPage > 1
+      ) {
+        setCurrentPage(currentPage - 1);
+      }
+
+      return updatedData;
+    });
+
+    closeModal();
   };
 
   return (
@@ -228,17 +272,11 @@ export default function DaftarArtikelD() {
                   Apakah anda yakin akan menghapus artikel ini?
                 </p>
                 <div className='flex flex-col gap-4'>
-                  <button
-                    onClick={closeModal}
-                    className='bg-gray-300 text-gray-700 px-6 py-3 rounded-full  hover:bg-gray-400 transition duration-200'
-                  >
+                  <button className='bg-gray-300 text-gray-700 px-6 py-3 rounded-full  hover:bg-gray-400 transition duration-200'>
                     No
                   </button>
                   <button
-                    onClick={() => {
-                      console.log('Deleting item', selectedItem);
-                      closeModal();
-                    }}
+                    onClick={() => handleDelete(selectedItem.id)}
                     className='bg-merah-yes text-white px-6 py-3 rounded-full  hover:bg-red-700 transition duration-200'
                   >
                     Yes
