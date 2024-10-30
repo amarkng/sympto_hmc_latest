@@ -15,6 +15,7 @@ module.exports = {
         'gray-table': '#475467',
         'gray-navbar': '#AEB2B7',
         'merah-yes': '#FF1818',
+        'green-verif': '#41B14B',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

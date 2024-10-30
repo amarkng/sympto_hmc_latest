@@ -25,7 +25,6 @@ export default function DiagnosisP() {
     'Diare',
   ];
 
-  const [newSymptom, setNewSymptom] = useState('');
   const [isAddSymptomModalOpen, setIsAddSymptomModalOpen] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -50,6 +49,18 @@ export default function DiagnosisP() {
     gejala.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const getImageByIndex = (index) => {
+    if (index % 4 === 0) {
+      return '/assets/images/dokter1.png';
+    } else if (index % 4 === 1) {
+      return '/assets/images/dokter2.png';
+    } else if (index % 4 === 2) {
+      return '/assets/images/dokter3.png';
+    } else {
+      return '/assets/images/dokter4.png';
+    }
+  };
+
   return (
     <div className='flex min-h-screen bg-gray-100'>
       <NavbarPatient
@@ -64,7 +75,7 @@ export default function DiagnosisP() {
         style={{ maxHeight: '100vh' }}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
-          <h1 className='text-2xl font-bold text-blue-600'>SymptoSense</h1>
+          <h1 className='text-2xl font-bold text-blue-600'>Symptosense</h1>
           <button onClick={toggleSidebar}>
             <FaBars className='text-2xl text-gray-700' />
           </button>
@@ -146,9 +157,7 @@ export default function DiagnosisP() {
         <div className='fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50'>
           <div className='bg-white rounded-xl shadow-lg w-11/12 sm:w-4/6 md:w-3/5 lg:w-2/4 max-h-screen overflow-y-auto'>
             <div className='relative bg-blue-600 p-4 rounded-t-xl flex justify-center items-center'>
-              <h2 className='text-lg sm:text-xl font-bold text-white'>
-                Tambah Gejala
-              </h2>
+              <h2 className='text-lg sm:text-xl text-white'>Tambah Gejala</h2>
               <button
                 onClick={() => setIsAddSymptomModalOpen(false)}
                 className='absolute right-4 top-4 w-8 h-8 bg-blue-600 border-2 border-white rounded-full flex items-center justify-center text-white text-xl hover:bg-blue-700'
@@ -168,10 +177,10 @@ export default function DiagnosisP() {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
+            </div>
 
-              <h3 className='font-semibold text-lg text-black mb-2'>
-                Pilih Gejala
-              </h3>
+            <div className='p-4'>
+              <h3 className=' text-lg text-black mb-2'>Pilih Gejala</h3>
               <div className='border rounded-lg overflow-hidden'>
                 <ul className='divide-y divide-gray-300'>
                   {filteredGejala.map((gejala, index) => (
@@ -196,42 +205,41 @@ export default function DiagnosisP() {
       {isResultModalOpen && (
         <div className='fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50'>
           <div className='bg-white rounded-xl shadow-lg w-11/12 sm:w-4/6 md:w-3/5 lg:w-3/5 xl:w-2/3 max-h-screen overflow-y-auto'>
-            <div className='relative bg-blue-600 rounded-t-xl p-4 flex justify-between items-center'>
-              <h2 className='text-lg sm:text-xl font-bold text-white'>
+            <div className='relative bg-blue-600 p-4 rounded-t-xl flex justify-center items-center'>
+              <h2 className='text-lg sm:text-xl  text-white'>
                 Hasil Diagnosis AI
               </h2>
               <button
                 onClick={() => setIsResultModalOpen(false)}
-                className='text-white hover:text-gray-200'
+                className='absolute right-4 top-4 w-8 h-8 bg-blue-600 border-2 border-white rounded-full flex items-center justify-center text-white text-xl hover:bg-blue-700'
               >
-                ✕
+                &times;
               </button>
             </div>
 
             <div className='p-6 grid grid-cols-1 md:grid-cols-2 gap-4'>
               {/* Bagian Kiri */}
               <div className='p-6'>
-                <p className='text-lg text-gray-700'>Nama Penyakit:</p>
+                <p className='text-lg text-black'>Nama Penyakit:</p>
                 <p className='font-bold text-xl text-black mb-4'>
                   Demam Berdarah
                 </p>
-
-                <p className='font-semibold text-lg text-gray-700 mb-2'>
-                  Gejala:
-                </p>
-                <div className='border rounded-lg overflow-hidden'>
-                  <ul className='divide-y divide-gray-300'>
-                    {[
-                      'Demam tinggi',
-                      'Sakit dada',
-                      'Sulit bernafas',
-                      'Tidak nafsu makan',
-                    ].map((gejala, index) => (
-                      <li key={index} className='py-3 px-4 text-black'>
-                        {gejala}
-                      </li>
-                    ))}
-                  </ul>
+                <div className='lg:pt-5'>
+                  <p className='text-lg text-black mb-2'>Gejala:</p>
+                  <div className='border rounded-lg overflow-hidden'>
+                    <ul className='divide-y divide-gray-300'>
+                      {[
+                        'Demam tinggi',
+                        'Sakit dada',
+                        'Sulit bernafas',
+                        'Tidak nafsu makan',
+                      ].map((gejala, index) => (
+                        <li key={index} className='py-3 px-4 text-black'>
+                          {gejala}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -241,15 +249,15 @@ export default function DiagnosisP() {
                   Dokter yang aktif
                 </h3>
                 <table className='w-full table-auto'>
-                  <thead>
-                    <tr className='bg-gray-50 text-left'>
-                      <th className='py-3 px-6 text-sm font-semibold text-gray-600'>
+                  <thead className='bg-gray-50'>
+                    <tr className=' text-left'>
+                      <th className='py-3 px-6 text-sm font-semibold text-gray-table'>
                         No.
                       </th>
-                      <th className='py-3 px-6 text-sm font-semibold text-gray-600'>
+                      <th className='py-3 px-6 text-sm font-semibold text-gray-table'>
                         Nama Dokter
                       </th>
-                      <th className='py-3 px-6 text-sm font-semibold text-gray-600 text-center'>
+                      <th className='py-3 px-6 text-sm font-semibold text-gray-table text-center'>
                         Status
                       </th>
                     </tr>
@@ -297,15 +305,15 @@ export default function DiagnosisP() {
                         aktif: true,
                       },
                     ].map((dokter, index) => (
-                      <tr key={index} className='odd:bg-white even:bg-gray-50'>
-                        <td className='py-4 px-6 text-black text-center'>
+                      <tr key={index} className='bg-white'>
+                        <td className='py-4 px-6 text-gray-table text-left'>
                           {index + 1}
                         </td>
                         <td className='py-4 px-6 text-black'>
                           <div className='flex items-center space-x-4'>
                             <div className='relative w-10 h-10'>
                               <Image
-                                src='/assets/images/placeholder2.png'
+                                src={getImageByIndex(index)}
                                 alt={`Foto ${dokter.nama}`}
                                 className='rounded-full'
                                 width={64}
@@ -324,7 +332,12 @@ export default function DiagnosisP() {
                         </td>
                         <td className='py-4 px-6 text-center'>
                           <button
-                            className={`px-4 py-1.5 rounded-full text-sm font-semibold ${
+                            onClick={() => {
+                              if (dokter.aktif) {
+                                setIsResultModalOpen(false);
+                              }
+                            }}
+                            className={`px-4 py-1.5 rounded-lg text-sm font-semibold ${
                               dokter.aktif
                                 ? 'bg-blue-600 text-white hover:bg-blue-700'
                                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'

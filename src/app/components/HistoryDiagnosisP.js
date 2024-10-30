@@ -149,7 +149,7 @@ export default function HistoryDiagnosisP() {
                 </td>
                 <td className='px-4 py-4 text-center'>
                   {item.status === 'Verified' ? (
-                    <span className='bg-green-600 text-white px-2 py-1 rounded-lg text-sm'>
+                    <span className='bg-green-verif text-white px-2 py-1 rounded-lg text-sm'>
                       Verifikasi
                     </span>
                   ) : item.status === 'Ditolak' ? (

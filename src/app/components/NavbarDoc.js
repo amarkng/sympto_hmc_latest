@@ -89,7 +89,11 @@ export default function NavbarDoc({ toggleSidebar, isSidebarOpen }) {
           Icon={HiOutlineDocumentArrowUp}
           label='Unggah Artikel'
           href='/DaftarArtikelD'
-          isActive={isActive('/DaftarArtikelD') || isActive('/UnggahArtikelD')}
+          isActive={
+            isActive('/DaftarArtikelD') ||
+            isActive('/UnggahArtikelD') ||
+            isActive('/EditArtikelD')
+          }
         />
       </nav>
 

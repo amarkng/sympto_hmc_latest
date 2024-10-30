@@ -113,7 +113,7 @@ export default function KonsultasiDokter() {
         style={{ maxHeight: '100vh' }}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
-          <h1 className='text-2xl font-bold text-blue-600'>Konsultasi</h1>
+          <h1 className='text-2xl font-bold text-blue-600'>Symptosense</h1>
           <button onClick={toggleSidebar}>
             <FaBars className='text-2xl text-gray-700' />
           </button>

@@ -5,9 +5,9 @@ import { FaBars } from 'react-icons/fa';
 export default function EditArtikelD() {
   const [judul, setJudul] = useState('The Golden Sands of Florida');
   const [kategori, setKategori] = useState('Health');
-  const [tanggalRilis, setTanggalRilis] = useState('2002-06-23');
+  const [tanggalRilis, setTanggalRilis] = useState('2024-10-30');
   const [detailArtikel, setDetailArtikel] = useState(
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed et donec purus viverra. Sit justo velit, eu sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed et donec purus viverra. Sit justo velit, eu sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed et donec purus viverra. Sit justo velit, eu sed.'
   );
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -43,14 +43,16 @@ export default function EditArtikelD() {
         } overflow-y-auto`}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
-          <h1 className='text-2xl font-bold text-blue-600'>Daftar Artikel</h1>
+          <h1 className='text-2xl font-bold text-blue-600'>Symptosense</h1>
           <button onClick={toggleSidebar}>
             <FaBars className='text-2xl text-gray-700' />
           </button>
         </div>
 
         <div className='flex-1 '>
-          <h1 className='text-3xl font-bold text-black mb-6'>Edit Artikel</h1>
+          <h1 className='text-3xl font-bold text-black mb-6 text-center lg:text-left'>
+            Edit Artikel
+          </h1>
 
           <div className='bg-white p-6 rounded-lg shadow-md'>
             <form className='space-y-6'>

@@ -3,12 +3,10 @@ import NavbarDoc from '../app/components/NavbarDoc';
 import { FaBars } from 'react-icons/fa';
 
 export default function UnggahArtikelD() {
-  const [judul, setJudul] = useState('The Golden Sands of Florida');
-  const [kategori, setKategori] = useState('Health');
-  const [tanggalRilis, setTanggalRilis] = useState('2002-06-23');
-  const [detailArtikel, setDetailArtikel] = useState(
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-  );
+  const [judul, setJudul] = useState('');
+  const [kategori, setKategori] = useState('');
+  const [tanggalRilis, setTanggalRilis] = useState('');
+  const [detailArtikel, setDetailArtikel] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const toggleSidebar = () => {
@@ -43,14 +41,16 @@ export default function UnggahArtikelD() {
         } overflow-y-auto`}
       >
         <div className='md:hidden flex justify-between items-center mb-6'>
-          <h1 className='text-2xl font-bold text-blue-600'>Daftar Artikel</h1>
+          <h1 className='text-2xl font-bold text-blue-600'>Symptosense</h1>
           <button onClick={toggleSidebar}>
             <FaBars className='text-2xl text-gray-700' />
           </button>
         </div>
 
         <div className='flex-1 '>
-          <h1 className='text-3xl font-bold text-black mb-6'>Unggah Artikel</h1>
+          <h1 className='text-3xl font-bold text-black mb-6 text-center lg:text-left'>
+            Unggah Artikel
+          </h1>
 
           <div className='bg-white p-6 rounded-lg shadow-md'>
             <form className='space-y-6'>
@@ -121,7 +121,7 @@ export default function UnggahArtikelD() {
                   rows='6'
                   value={detailArtikel}
                   onChange={(e) => setDetailArtikel(e.target.value)}
-                  placeholder='Masukkan detail artikel'
+                  placeholder='Tulis isi artikel'
                 />
               </div>
 

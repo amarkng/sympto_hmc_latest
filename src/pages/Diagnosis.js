@@ -141,9 +141,7 @@ export default function Diagnosis() {
             </div>
 
             <div className='p-4'>
-              <h3 className='font-semibold text-lg text-black mb-2'>
-                Pilih Gejala
-              </h3>
+              <h3 className=' text-lg text-black mb-2'>Pilih Gejala</h3>
               <div className='border rounded-lg overflow-hidden'>
                 <ul className='divide-y divide-gray-300'>
                   {filteredGejala.map((gejala, index) => (
