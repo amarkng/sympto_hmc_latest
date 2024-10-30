@@ -25,8 +25,19 @@ export default function EditArtikelD() {
   };
 
   const handleUnggah = () => {
-    alert('Artikel berhasil diunggah!');
-    closeModal();
+    if (!judul) {
+      alert('Harap isi judul artikel sebelum mengunggah.');
+      closeModal();
+    } else if (!kategori) {
+      alert('Harap isi kategori artikel sebelum mengunggah.');
+      closeModal();
+    } else if (!detailArtikel) {
+      alert('Harap isi detail artikel sebelum mengunggah.');
+      closeModal();
+    } else {
+      alert('Artikel berhasil diunggah!');
+      closeModal();
+    }
   };
 
   const handleFileChange = (event) => {
@@ -91,7 +102,7 @@ export default function EditArtikelD() {
                     type='date'
                     className='w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black'
                     value={tanggalRilis}
-                    onChange={(e) => setTanggalRilis(e.target.value)}
+                    readOnly
                   />
                 </div>
               </div>
