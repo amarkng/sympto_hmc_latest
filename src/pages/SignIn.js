@@ -12,12 +12,12 @@ export default function SignIn() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (password === 'dokter') {
+    if (password === 'dokter' || password === 'Dokter') {
       router.push({
         pathname: '/doctor-dashboard',
         query: { role: 'doctor' },
       });
-    } else if (password === 'pasien') {
+    } else if (password === 'pasien' || password === 'Pasien') {
       router.push({
         pathname: '/patient-dashboard',
         query: { role: 'patient' },
