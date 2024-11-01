@@ -37,6 +37,7 @@ export default function EditArtikelD() {
     } else {
       alert('Artikel berhasil diunggah!');
       closeModal();
+      window.location.href = '/DaftarArtikelD';
     }
   };
 

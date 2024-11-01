@@ -4,13 +4,18 @@ import Link from 'next/link';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 
 export default function SignIn() {
-  const [role, setRole] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const router = useRouter();
 
   const handleLogin = (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      alert('Harap isi semua kolom.');
+      return;
+    }
 
     if (password === 'dokter' || password === 'Dokter') {
       router.push({
@@ -55,6 +60,8 @@ export default function SignIn() {
               <input
                 type='email'
                 placeholder='Masukkan email anda'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className='mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black'
               />
             </div>

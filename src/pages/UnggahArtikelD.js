@@ -40,6 +40,7 @@ export default function UnggahArtikelD() {
     } else {
       alert('Artikel berhasil diunggah!');
       closeModal();
+      window.location.href = '/DaftarArtikelD';
     }
   };
 

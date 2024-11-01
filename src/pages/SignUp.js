@@ -4,16 +4,28 @@ import Link from 'next/link';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 
 export default function SignUp() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
-  const [, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const router = useRouter();
 
   const handleSignUp = (e) => {
     e.preventDefault();
 
-    if (!role) {
-      alert('Pilih role terlebih dahulu.');
+    if (!name || !email || !password || !role) {
+      alert('Harap isi semua kolom.');
+      return;
+    }
+
+    if (role === 'doctor' && !selectedFile) {
+      alert('Harap unggah STR untuk Dokter.');
+      return;
+    }
+    if (role === 'patient' && !selectedFile) {
+      alert('Harap unggah KTP untuk Pasien.');
       return;
     }
 
@@ -62,7 +74,9 @@ export default function SignUp() {
               <input
                 type='text'
                 placeholder='Masukan nama anda'
-                className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black' // Text hitam
+                className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
@@ -72,8 +86,10 @@ export default function SignUp() {
               </label>
               <input
                 type='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder='Masukan email anda'
-                className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black' // Text hitam
+                className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black'
               />
             </div>
 
@@ -84,8 +100,10 @@ export default function SignUp() {
               <div className='relative'>
                 <input
                   type={passwordVisible ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder='Masukan kata sandi anda'
-                  className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black' // Text hitam
+                  className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black'
                 />
                 <button
                   type='button'
@@ -108,7 +126,7 @@ export default function SignUp() {
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black' // Text hitam
+                className='mt-1 w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black'
               >
                 <option value=''>Pilih Role</option>
                 <option value='doctor'>Dokter</option>
@@ -139,6 +157,7 @@ export default function SignUp() {
                 <input
                   type='file'
                   accept='image/*'
+                  value={selectedFile}
                   onChange={handleFileChange}
                   required
                   className='mt-1 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-blue-600 file:text-white hover:file:bg-blue-700'
