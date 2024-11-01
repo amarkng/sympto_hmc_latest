@@ -109,7 +109,7 @@ export default function DiagnosisP() {
 
                 {isEditMode && (
                   <button
-                    className='absolute inset-0 bg-hapus-diag rounded-xl bg-opacity-100 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition'
+                    className='absolute inset-0 bg-hapus-diag rounded-xl bg-opacity-100 text-white flex items-center justify-center opacity-100 hover:opacity-0 transition'
                     onClick={() => handleDeleteSymptom(symptom)}
                   >
                     <TbTrash className='text-lg mr-2' />
