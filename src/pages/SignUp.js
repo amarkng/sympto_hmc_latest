@@ -13,18 +13,18 @@ export default function SignUp() {
     e.preventDefault();
 
     if (!role) {
-      alert('Please select a role before signing up.');
+      alert('Pilih role terlebih dahulu.');
       return;
     }
 
     if (role === 'doctor') {
       router.push({
-        pathname: '/doctor-dashboard',
+        pathname: '/SignIn',
         query: { role: 'doctor' },
       });
     } else if (role === 'patient') {
       router.push({
-        pathname: '/patient-dashboard',
+        pathname: '/SignIn',
         query: { role: 'patient' },
       });
     }
