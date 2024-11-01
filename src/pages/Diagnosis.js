@@ -61,13 +61,15 @@ export default function Diagnosis() {
               {symptoms.map((symptom, index) => (
                 <div
                   key={index}
-                  className='relative group px-6 py-3 rounded-xl text-center border border-blue-400 text-black transition min-w-[140px] flex items-center justify-center'
+                  className={`relative px-6 py-3 rounded-xl text-center border border-blue-400 text-black transition min-w-[140px] flex items-center justify-center ${
+                    isEditMode ? 'hover:opacity-100' : 'opacity-100'
+                  }`}
                 >
                   {symptom}
 
                   {isEditMode && (
                     <button
-                      className='absolute inset-0 bg-hapus-diag rounded-xl bg-opacity-100  text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition'
+                      className='absolute inset-0 bg-hapus-diag rounded-xl bg-opacity-100 text-white flex items-center justify-center opacity-100 hover:opacity-0 transition'
                       onClick={() => handleDeleteSymptom(symptom)}
                     >
                       <TbTrash className='text-lg mr-2' />
