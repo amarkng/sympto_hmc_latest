@@ -27,7 +27,7 @@ export default function Hero() {
         proaktif.
       </p>
       <button className='mt-8 bg-blue-600 text-white py-5 px-8 rounded-full text-sm sm:text-lg relative z-10 flex items-center'>
-        <Link href='SignIn' className='flex items-center'>
+        <Link href='Diagnosis' className='flex items-center'>
           Mulai <span className='ml-2'>→</span>
         </Link>
       </button>
