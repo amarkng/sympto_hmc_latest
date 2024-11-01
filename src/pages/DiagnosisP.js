@@ -7,14 +7,7 @@ import { MdOutlineEdit } from 'react-icons/md';
 import Image from 'next/image';
 
 export default function DiagnosisP() {
-  const [symptoms, setSymptoms] = useState([
-    'Sesak napas',
-    'Suara serak',
-    'Batuk terus-menerus',
-    'Nyeri dada',
-    'Tubuh Lemas',
-    'Sakit Kepala',
-  ]);
+  const [symptoms, setSymptoms] = useState([]);
   const gejalaList = [
     'Demam tinggi',
     'Sakit kepala',

@@ -173,6 +173,7 @@ export default function PatientSettings() {
                   type='password'
                   name='password'
                   value={formData.password}
+                  readOnly
                   onChange={handleChange}
                   className='w-full p-3 pr-10 border border-gray-300 rounded-lg text-black'
                 />

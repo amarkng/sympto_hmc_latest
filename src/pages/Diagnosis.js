@@ -6,11 +6,7 @@ import Navbar from '../app/components/Navbar';
 import Footer from '../app/components/Footer';
 
 export default function Diagnosis() {
-  const [symptoms, setSymptoms] = useState([
-    'Sesak napas',
-    'Suara serak',
-    'Batuk terus-menerus',
-  ]);
+  const [symptoms, setSymptoms] = useState([]);
 
   const gejalaList = [
     'Demam tinggi',

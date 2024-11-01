@@ -157,7 +157,6 @@ export default function SignUp() {
                 <input
                   type='file'
                   accept='image/*'
-                  value={selectedFile}
                   onChange={handleFileChange}
                   required
                   className='mt-1 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-blue-600 file:text-white hover:file:bg-blue-700'

@@ -17,12 +17,12 @@ export default function SignIn() {
       return;
     }
 
-    if (password === 'dokter' || password === 'Dokter') {
+    if (password === 'Dokter') {
       router.push({
         pathname: '/doctor-dashboard',
         query: { role: 'doctor' },
       });
-    } else if (password === 'pasien' || password === 'Pasien') {
+    } else if (password === 'Pasien') {
       router.push({
         pathname: '/patient-dashboard',
         query: { role: 'patient' },

@@ -9,7 +9,7 @@ export default function DoctorSettings() {
   const initialData = {
     name: 'Arman Maul',
     email: 'Armanmaul@gmail.com',
-    password: '************',
+    password: '******',
     phone: '+62 8211234565',
     gender: 'Laki-Laki',
     birthDate: '2002-06-23',
@@ -157,6 +157,7 @@ export default function DoctorSettings() {
                   type='password'
                   name='password'
                   value={formData.password}
+                  readOnly
                   onChange={handleChange}
                   className='w-full p-3 pr-10 border border-gray-300 rounded-lg text-black'
                 />

@@ -35,7 +35,7 @@ export default function EditArtikelD() {
       alert('Harap isi detail artikel sebelum mengunggah.');
       closeModal();
     } else {
-      alert('Artikel berhasil diunggah!');
+      alert('Artikel berhasil diperbarui!');
       closeModal();
       window.location.href = '/DaftarArtikelD';
     }
@@ -145,7 +145,7 @@ export default function EditArtikelD() {
                   onClick={openModal}
                   className='bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200'
                 >
-                  Unggah
+                  Perbarui
                 </button>
                 <button
                   type='button'

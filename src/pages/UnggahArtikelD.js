@@ -152,7 +152,6 @@ export default function UnggahArtikelD() {
                 </button>
                 <button
                   type='button'
-                  onClick={() => (window.location.href = '/DaftarArtikelD')}
                   className='border border-gray-400 text-gray-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-200'
                 >
                   Draf
