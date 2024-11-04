@@ -31,6 +31,7 @@ export default function DiagnosisP() {
   const handleAddSymptom = (symptom) => {
     if (!symptoms.includes(symptom)) {
       setSymptoms([...symptoms, symptom]);
+      setIsEditMode(false);
     }
   };
 
@@ -122,17 +123,33 @@ export default function DiagnosisP() {
           <div className='flex justify-center gap-6 lg:mt-12'>
             <button
               className={`${
-                isEditMode ? 'bg-yellow-600' : 'bg-yellow-400'
-              } text-white lg:px-6 lg:py-4  px-3 py-2 text-base  lg:text-lg text-md rounded-full hover:bg-yellow-600 transition flex items-center justify-center gap-1 lg:gap-2`}
-              onClick={() => setIsEditMode(!isEditMode)}
+                isEditMode && symptoms.length > 0
+                  ? 'bg-yellow-600'
+                  : 'bg-yellow-400'
+              } text-white lg:px-6 lg:py-4 px-3 py-2 text-base lg:text-lg text-md rounded-full hover:bg-yellow-600 transition flex items-center justify-center gap-1 lg:gap-2`}
+              onClick={() => {
+                if (symptoms.length === 0) {
+                  alert(
+                    'Silakan tambahkan setidaknya satu gejala sebelum mengaktifkan mode edit.'
+                  );
+                } else {
+                  setIsEditMode(!isEditMode);
+                }
+              }}
             >
               <MdOutlineEdit className='lg:text-lg text-md mr-1' />
               Edit
             </button>
 
             <button
-              className='bg-blue-950 hover:bg-black text-white lg:px-6 lg:py-4 px-3 py-2 text-base md:text-lg rounded-full transition flex items-center justify-center gap-1 lg:gap-2'
-              onClick={() => setIsResultModalOpen(true)}
+              className='bg-blue-950  text-white lg:px-6 lg:py-4 px-3 py-2 text-base md:text-lg rounded-full transition flex items-center justify-center gap-1 lg:gap-2'
+              onClick={() => {
+                if (symptoms.length === 0) {
+                  alert('Tambahkan gejala terlebih dahulu.');
+                } else {
+                  setIsResultModalOpen(true);
+                }
+              }}
             >
               <TbEye className='text-2xl' />
               Lihat Hasil Gejala
@@ -270,7 +287,7 @@ export default function DiagnosisP() {
                       {
                         nama: 'Lana Steiner',
                         spesialis: 'Dokter THT',
-                        aktif: false,
+                        aktif: true,
                       },
                       {
                         nama: 'Demi Wilkinson',
@@ -278,14 +295,14 @@ export default function DiagnosisP() {
                         aktif: false,
                       },
                       {
-                        nama: 'Michael Jordan',
+                        nama: 'Sarah Connor',
                         spesialis: 'Dokter Anak',
                         aktif: true,
                       },
                       {
-                        nama: 'Sarah Connor',
+                        nama: 'Kai Cenat',
                         spesialis: 'Dokter Anak',
-                        aktif: false,
+                        aktif: true,
                       },
                       {
                         nama: 'John Doe',
@@ -295,7 +312,7 @@ export default function DiagnosisP() {
                       {
                         nama: 'Jane Smith',
                         spesialis: 'Dokter Anak',
-                        aktif: true,
+                        aktif: false,
                       },
                     ].map((dokter, index) => (
                       <tr key={index} className='bg-white'>
@@ -327,6 +344,9 @@ export default function DiagnosisP() {
                           <button
                             onClick={() => {
                               if (dokter.aktif) {
+                                alert(
+                                  `Anda telah memilih ${dokter.nama} sebagai dokter yang akan membantu Anda.`
+                                );
                                 setIsResultModalOpen(false);
                               }
                             }}

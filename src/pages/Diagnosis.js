@@ -27,6 +27,7 @@ export default function Diagnosis() {
   const handleAddSymptom = (symptom) => {
     if (!symptoms.includes(symptom)) {
       setSymptoms([...symptoms, symptom]);
+      setIsEditMode(false);
     }
   };
 
@@ -87,9 +88,19 @@ export default function Diagnosis() {
             <div className='flex justify-center gap-4 lg:mt-12'>
               <button
                 className={`${
-                  isEditMode ? 'bg-yellow-600' : 'bg-yellow-400'
+                  isEditMode && symptoms.length > 0
+                    ? 'bg-yellow-600'
+                    : 'bg-yellow-400'
                 } text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-3 text-sm sm:text-base md:text-lg rounded-full hover:bg-yellow-600 transition flex items-center justify-center gap-2`}
-                onClick={() => setIsEditMode(!isEditMode)}
+                onClick={() => {
+                  if (symptoms.length === 0) {
+                    alert(
+                      'Silakan tambahkan setidaknya satu gejala sebelum mengaktifkan mode edit.'
+                    );
+                  } else {
+                    setIsEditMode(!isEditMode);
+                  }
+                }}
               >
                 <MdOutlineEdit className='text-xl' />
                 Edit
@@ -97,7 +108,13 @@ export default function Diagnosis() {
 
               <button
                 className='bg-blue-950 text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-3 text-sm sm:text-base md:text-lg rounded-full hover:bg-blue-1000 transition flex items-center justify-center gap-2'
-                onClick={() => setIsResultModalOpen(true)}
+                onClick={() => {
+                  if (symptoms.length === 0) {
+                    alert('Tambahkan gejala terlebih dahulu.');
+                  } else {
+                    setIsResultModalOpen(true);
+                  }
+                }}
               >
                 <TbEye className='text-xl' />
                 Lihat Hasil Gejala
