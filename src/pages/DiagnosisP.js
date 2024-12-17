@@ -5,10 +5,13 @@ import HistoryDiagnosisP from '../app/components/HistoryDiagnosisP';
 import { TbEye, TbPlus, TbSearch, TbTrash } from 'react-icons/tb';
 import { MdOutlineEdit } from 'react-icons/md';
 import Image from 'next/image';
+//// tambahan buat ambil api gpt
+import { getDiagnosisFromAI } from '../lib/openaiDiagP';
 
 export default function DiagnosisP() {
   const [symptoms, setSymptoms] = useState([]);
   const gejalaList = [
+    // Gejala Umum
     'Demam tinggi',
     'Sakit kepala',
     'Tubuh lemas',
@@ -16,7 +19,91 @@ export default function DiagnosisP() {
     'Mual',
     'Muntah',
     'Diare',
+    'Batuk kering',
+    'Batuk berdahak',
+    'Pilek',
+    'Hidung tersumbat',
+    'Sakit dada',
+    'Sulit bernapas',
+    'Kelelahan',
+    'Nyeri otot',
+    'Nyeri sendi',
+    'Berkeringat dingin',
+    'Menggigil',
+    'Kehilangan nafsu makan',
+    'Sakit perut',
+    'Kehilangan indra penciuman',
+    'Kehilangan indra perasa',
+
+    // Gejala Kulit
+    'Ruam kulit',
+    'Kulit gatal',
+    'Kulit kemerahan',
+    'Kulit mengelupas',
+    'Mata merah',
+    'Mata bengkak',
+
+    // Gejala Saluran Pencernaan
+    'Gangguan pencernaan',
+    'Kembung',
+    'Susah buang air besar',
+    'Sering buang air kecil',
+    'Sakit saat buang air kecil',
+    'BAB berdarah',
+
+    // Gejala Pernafasan
+    'Sesak napas',
+    'Napas cepat',
+    'Nyeri di paru-paru',
+    'Batuk darah',
+    'Suara serak',
+
+    // Gejala Saraf
+    'Pusing',
+    'Migrain',
+    'Kejang',
+    'Mati rasa',
+    'Kesemutan',
+    'Gangguan penglihatan',
+    'Gangguan pendengaran',
+
+    // Gejala Mental dan Emosional
+    'Sulit tidur',
+    'Mudah cemas',
+    'Mudah marah',
+    'Hilang konsentrasi',
+    'Depresi',
+
+    // Gejala pada Anak
+    'Rewel berlebihan',
+    'Sulit makan',
+    'Menangis tanpa sebab',
+
+    // Lainnya
+    'Badan panas dingin',
+    'Tekanan darah rendah',
+    'Tekanan darah tinggi',
+    'Berat badan turun drastis',
+    'Berat badan naik cepat',
   ];
+
+  //// tambahan buat ambil api gpt
+  const [diagnosisAI, setDiagnosisAI] = useState('');
+
+  const handleCheckSymptoms = async () => {
+    if (symptoms.length === 0) {
+      alert('Tambahkan gejala terlebih dahulu.');
+      return;
+    }
+
+    setDiagnosisAI('Memproses...');
+
+    const result = await getDiagnosisFromAI(symptoms);
+    setDiagnosisAI(result);
+    setIsResultModalOpen(true);
+  };
+
+  ////
 
   const [isAddSymptomModalOpen, setIsAddSymptomModalOpen] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
@@ -148,6 +235,7 @@ export default function DiagnosisP() {
                   alert('Tambahkan gejala terlebih dahulu.');
                 } else {
                   setIsResultModalOpen(true);
+                  handleCheckSymptoms();
                 }
               }}
             >
@@ -232,18 +320,13 @@ export default function DiagnosisP() {
               <div className='p-6'>
                 <p className='text-lg text-black'>Nama Penyakit:</p>
                 <p className='font-bold text-xl text-black mb-4'>
-                  Demam Berdarah
+                  {diagnosisAI || 'Belum ada hasil'}
                 </p>
                 <div className='lg:pt-5'>
                   <p className='text-lg text-black mb-2'>Gejala:</p>
                   <div className='border rounded-lg overflow-hidden'>
                     <ul className='divide-y divide-gray-300'>
-                      {[
-                        'Demam tinggi',
-                        'Sakit dada',
-                        'Sulit bernafas',
-                        'Tidak nafsu makan',
-                      ].map((gejala, index) => (
+                      {symptoms.map((gejala, index) => (
                         <li key={index} className='py-3 px-4 text-black'>
                           {gejala}
                         </li>

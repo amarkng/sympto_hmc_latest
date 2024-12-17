@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavbarDoc from '../app/components/NavbarDoc';
 import { FaChevronLeft, FaChevronRight, FaBars } from 'react-icons/fa';
-import Image from 'next/image';
 
 const generateDummyData = (numPatients) => {
   const names = [
@@ -87,11 +86,11 @@ export default function KonsultasiDokter() {
         };
         const api = new window.JitsiMeetExternalAPI(domain, options);
 
-        api.addEventListener('videoConferenceJoined', () => {
+        api.on('videoConferenceJoined', () => {
           console.log('Video conference joined');
         });
 
-        api.addEventListener('error', (error) => {
+        api.on('error', (error) => {
           console.error('Jitsi error:', error);
         });
 
