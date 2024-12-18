@@ -18,10 +18,10 @@ export const getDiagnosisFromAI = async (symptoms) => {
             role: 'user',
             content: `Gejala berikut: ${symptoms.join(
               ', '
-            )}. Apa satu diagnosis penyakit yang paling mungkin?`,
+            )}. Apa satu diagnosis penyakit yang paling mungkin? (gunakan bahasa indonesia)`,
           },
         ],
-        max_tokens: 50,
+        max_tokens: 30,
       },
       {
         headers: {
@@ -35,7 +35,10 @@ export const getDiagnosisFromAI = async (symptoms) => {
       response.data.choices[0]?.message?.content || 'Diagnosis tidak tersedia'
     );
   } catch (error) {
-    console.error('Error fetching diagnosis:', error.message);
-    return 'Maaf, sistem sedang sibuk. Silakan coba lagi dalam beberapa saat.';
+    console.error('Error response:', error.response?.data || error.message);
+    return (
+      'Maaf, sistem sedang sibuk. Silakan coba lagi dalam beberapa saat..' +
+      (error.response?.data?.error?.message || error.message)
+    );
   }
 };

@@ -89,6 +89,7 @@ export default function DiagnosisP() {
 
   //// tambahan buat ambil api gpt
   const [diagnosisAI, setDiagnosisAI] = useState('');
+  const [isRequesting, setIsRequesting] = useState(false);
 
   const handleCheckSymptoms = async () => {
     if (symptoms.length === 0) {
@@ -96,11 +97,28 @@ export default function DiagnosisP() {
       return;
     }
 
-    setDiagnosisAI('Memproses...');
+    if (symptoms.length > 10) {
+      alert('Maksimal 10 gejala untuk diagnosis yang akurat.');
+      return;
+    }
 
-    const result = await getDiagnosisFromAI(symptoms);
-    setDiagnosisAI(result);
-    setIsResultModalOpen(true);
+    if (isRequesting) {
+      alert('Harap tunggu hingga diagnosis selesai.');
+      return;
+    }
+
+    setIsRequesting(true);
+    setDiagnosisAI('Memproses...');
+    try {
+      const result = await getDiagnosisFromAI(symptoms);
+      setDiagnosisAI(result);
+      setIsResultModalOpen(true);
+    } catch (error) {
+      console.error('Error fetching diagnosis:', error);
+      setDiagnosisAI('Gagal mendapatkan diagnosis dari AI.');
+    } finally {
+      setIsRequesting(false);
+    }
   };
 
   ////
@@ -300,6 +318,7 @@ export default function DiagnosisP() {
         </div>
       )}
       {/* Modal Hasil Diagnosis */}
+
       {isResultModalOpen && (
         <div className='fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50'>
           <div className='bg-white rounded-xl shadow-lg w-11/12 sm:w-4/6 md:w-3/5 lg:w-3/5 xl:w-2/3 max-h-screen overflow-y-auto'>
@@ -314,6 +333,15 @@ export default function DiagnosisP() {
                 &times;
               </button>
             </div>
+            {isRequesting && (
+              <div className='fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50'>
+                <div className='bg-white p-6 rounded-lg shadow-lg'>
+                  <p className='text-black text-xl'>
+                    Mengambil hasil diagnosis...
+                  </p>
+                </div>
+              </div>
+            )}
 
             <div className='p-6 grid grid-cols-1 md:grid-cols-2 gap-4'>
               {/* Bagian Kiri */}
